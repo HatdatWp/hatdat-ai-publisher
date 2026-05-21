@@ -57,6 +57,12 @@ OpenAI usage limits: https://platform.openai.com/settings/organization/limits
 
 Hatdat AI Publisher can write SEO metadata for Rank Math and Yoast SEO. SEO integration can also be disabled.
 
+== Screenshots ==
+
+1. Hatdat AI Publisher settings page
+2. Prompt editor for article and image generation
+3. AI-powered content generation form
+
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/hatdat-ai-publisher/`.
