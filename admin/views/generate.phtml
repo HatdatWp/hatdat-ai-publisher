@@ -1,0 +1,351 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+$settings = AI_Publisher_Settings::get();
+$prompts  = AI_Publisher_Prompt_Manager::all();
+$has_openai_consent = AI_Publisher_Settings::has_required_openai_consent();
+$language_options = ai_publisher_language_options();
+$default_content_language = ai_publisher_default_content_language();
+?>
+<div class="wrap ai-publisher-wrap">
+    <h1>
+        <?php esc_html_e('Hatdat AI Publisher – Generate content', 'hatdat-ai-publisher'); ?>
+    </h1>
+    <?php if (!empty($_GET['ai_error'])) : ?>
+        <div class="notice notice-error">
+            <p>
+                <?php echo wp_kses(nl2br(esc_html(wp_unslash($_GET['ai_error']))), array('br' => array())); ?>
+            </p>
+        </div>
+    <?php endif; ?>
+    <?php if (!$has_openai_consent) : ?>
+        <div class="notice notice-warning">
+            <p>
+                <?php
+                echo esc_html__(
+                    'Content generation is currently disabled.',
+                    'hatdat-ai-publisher'
+                );
+                ?>
+            </p>
+            <p>
+                <a
+                    class="button button-primary"
+                    href="<?php echo esc_url(admin_url('admin.php?page=ai-publisher-settings')); ?>"
+                >
+                    <?php esc_html_e('Go to Hatdat AI Publisher settings', 'hatdat-ai-publisher'); ?>
+                </a>
+            </p>
+        </div>
+    <?php endif; ?>
+
+    <?php
+    $cost_settings = AI_Publisher_Settings::get();
+    $estimate = AI_Publisher_Cost_Estimator::estimate_from_character_count(
+        8000,
+        !empty($cost_settings['generate_image']),
+        $cost_settings
+    );
+
+    $credit_data = null;
+    $credit_error = null;
+
+    if (!empty($cost_settings['api_key'])) {
+        $client = new AI_Publisher_OpenAI_Client($cost_settings['api_key']);
+        $credit_data = $client->get_credit_balance();
+
+        if (is_wp_error($credit_data)) {
+            $credit_error = $credit_data->get_error_message();
+            $credit_data = null;
+        }
+    }
+    ?>
+    <div class="ai-publisher-card ai-publisher-cost-overview">
+        <h2><?php esc_html_e('OpenAI cost estimation', 'hatdat-ai-publisher'); ?></h2>
+        <p>
+            <?php esc_html_e('The cost estimation is an approximation based on the configured Hatdat AI Publisher pricing values and the currently selected models/image size.', 'hatdat-ai-publisher'); ?>
+        </p>
+        <table class="widefat striped">
+            <tbody>
+                <tr>
+                    <td><strong><?php esc_html_e('Estimated text cost per article', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $estimate['text_cost'])); ?></td>
+                </tr>
+                <tr>
+                    <td><strong><?php esc_html_e('Estimated image cost', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $estimate['image_cost'])); ?></td>
+                </tr>
+                <tr>
+                    <td><strong><?php esc_html_e('Estimated total cost per generated content item', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><strong><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $estimate['total_cost'])); ?></strong></td>
+                </tr>
+                <tr>
+                    <td><strong><?php esc_html_e('Configured image size', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html($estimate['image_size']); ?></td>
+                </tr>
+                <tr>
+                    <td><strong><?php esc_html_e('Estimated OpenAI input tokens', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html(number_format_i18n((int) $estimate['input_tokens'])); ?></td>
+                </tr>
+                <tr>
+                    <td><strong><?php esc_html_e('Estimated OpenAI output tokens', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html(number_format_i18n((int) $estimate['output_tokens'])); ?></td>
+                </tr>
+                <?php if ($credit_data) : ?>
+                    <tr>
+                        <td><strong><?php esc_html_e('OpenAI available credit', 'hatdat-ai-publisher'); ?></strong></td>
+                        <td><strong><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $credit_data['total_available'])); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong><?php esc_html_e('OpenAI used credit', 'hatdat-ai-publisher'); ?></strong></td>
+                        <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $credit_data['total_used'])); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong><?php esc_html_e('OpenAI total granted credit', 'hatdat-ai-publisher'); ?></strong></td>
+                        <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $credit_data['total_granted'])); ?></td>
+                    </tr>
+                <?php else : ?>
+                    <tr>
+                        <td><strong><?php esc_html_e('OpenAI credit information', 'hatdat-ai-publisher'); ?></strong></td>
+                        <td>
+                            <?php esc_html_e('Not available via API. The article generation can still work if the API key and billing are valid.', 'hatdat-ai-publisher'); ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+        <?php if ($credit_error) : ?>
+            <div class="notice notice-info inline ai-publisher-inline-notice">
+                <p>
+                    <?php esc_html_e('Note: OpenAI credit/balance data could not be retrieved automatically. Please use the billing check in the settings or verify the balance directly in the OpenAI dashboard.', 'hatdat-ai-publisher'); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <form
+        method="post"
+        action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
+        class="ai-publisher-card"
+        data-ai-publisher-busy="1"
+        data-ai-publisher-busy-message="<?php echo esc_attr__('Waiting for GPT response…', 'hatdat-ai-publisher'); ?>"
+    >
+        <?php wp_nonce_field('ai_publisher_action'); ?>
+        <input
+            type="hidden"
+            name="action"
+            value="ai_publisher_generate"
+        >
+        <table
+            class="form-table"
+            role="presentation"
+        >
+            <tr>
+                <th>
+                    <label for="prompt_id">
+                        <?php esc_html_e('Prompt', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="prompt_id"
+                        id="prompt_id"
+                        required
+                    >
+                        <?php foreach ($prompts as $prompt) : ?>
+                            <option value="<?php echo (int) $prompt->ID; ?>">
+                                <?php echo esc_html($prompt->post_title); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="content_language">
+                        <?php esc_html_e('Output language', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="content_language"
+                        id="content_language"
+                    >
+                        <?php foreach ($language_options as $language_value => $language_label) : ?>
+                            <option
+                                value="<?php echo esc_attr($language_value); ?>"
+                                <?php selected($language_value, $default_content_language); ?>
+                            >
+                                <?php echo esc_html($language_label); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <p class="description">
+                        <?php esc_html_e('The generated post or page will be written in this language. The default is the site language, independently of the admin language and prompt language.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="article_input">
+                        <?php esc_html_e('URL or topic', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <textarea
+                        name="article_input"
+                        id="article_input"
+                        rows="6"
+                        class="large-text"
+                        required
+                    ></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="post_type">
+                        <?php esc_html_e('Content type', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="post_type"
+                        id="post_type"
+                    >
+                        <option
+                            value="post"
+                            selected
+                        >
+                            <?php esc_html_e('Post', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option value="page">
+                            <?php esc_html_e('Page', 'hatdat-ai-publisher'); ?>
+                        </option>
+                    </select>
+                    <p class="description">
+                        <?php esc_html_e('Choose whether Hatdat AI Publisher should create a blog post or a static page.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="category">
+                        <?php esc_html_e('Category', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <?php
+                    wp_dropdown_categories(
+                        array(
+                            'show_option_none' => __('No default', 'hatdat-ai-publisher'),
+                            'name'             => 'category',
+                            'selected'         => (int) $settings['default_category'],
+                            'hide_empty'       => false,
+                        )
+                    );
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="post_status">
+                        <?php esc_html_e('Status', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="post_status"
+                        id="post_status"
+                    >
+                        <option
+                            value="draft"
+                            <?php selected($settings['default_status'], 'draft'); ?>
+                        >
+                            <?php esc_html_e('Draft', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="pending"
+                            <?php selected($settings['default_status'], 'pending'); ?>
+                        >
+                            <?php esc_html_e('Pending review', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="publish"
+                            <?php selected($settings['default_status'], 'publish'); ?>
+                        >
+                            <?php esc_html_e('Publish', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="private"
+                            <?php selected($settings['default_status'], 'private'); ?>
+                        >
+                            <?php esc_html_e('Private', 'hatdat-ai-publisher'); ?>
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="seo_provider">
+                        <?php esc_html_e('SEO plugin', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="seo_provider"
+                        id="seo_provider"
+                    >
+                        <option
+                            value="auto"
+                            <?php selected($settings['seo_provider'], 'auto'); ?>
+                        >
+                            <?php esc_html_e('Detect automatically', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="none"
+                            <?php selected($settings['seo_provider'], 'none'); ?>
+                        >
+                            <?php esc_html_e('Do not set SEO data', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="rankmath"
+                            <?php selected($settings['seo_provider'], 'rankmath'); ?>
+                        >
+                            <?php esc_html_e('Rank Math', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="yoast"
+                            <?php selected($settings['seo_provider'], 'yoast'); ?>
+                        >
+                            <?php esc_html_e('Yoast SEO', 'hatdat-ai-publisher'); ?>
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <?php esc_html_e('Featured image', 'hatdat-ai-publisher'); ?>
+                </th>
+                <td>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="generate_image"
+                            value="1"
+                            <?php checked((int) $settings['generate_image'], 1); ?>
+                        >
+                        <?php esc_html_e('Generate featured image', 'hatdat-ai-publisher'); ?>
+                    </label>
+                    <?php if (empty($settings['generate_image'])) : ?>
+                        <p class="description">
+                            <?php esc_html_e('Featured image generation is currently disabled in the plugin settings. This may have been changed automatically after a billing or quota error.', 'hatdat-ai-publisher'); ?>
+                        </p>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </table>
+        <?php submit_button(__('Generate content', 'hatdat-ai-publisher'), 'primary', 'submit', true, $has_openai_consent ? array() : array('disabled' => 'disabled')); ?>
+    </form>
+</div>

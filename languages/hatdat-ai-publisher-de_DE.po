@@ -1,0 +1,648 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hatdat AI Publisher 1.1.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-17 00:00+0000\n"
+"PO-Revision-Date: 2026-05-17 00:00+0000\n"
+"Last-Translator: Hatdat AI Publisher\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: ChatGPT\n"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Add new prompt"
+msgstr "Neuen Prompt hinzufügen"
+
+msgid "AI Prompt"
+msgstr "KI-Prompt"
+
+msgid "AI Prompts"
+msgstr "KI-Prompts"
+
+msgid "Hatdat AI Publisher"
+msgstr "Hatdat AI Publisher"
+
+msgid "Hatdat AI Publisher can send prompts, article content and image generation requests entered by administrators to the OpenAI API for processing."
+msgstr "Hatdat AI Publisher kann Prompts, Artikelinhalte und Bildgenerierungsanfragen, die von Administratoren eingegeben werden, zur Verarbeitung an die OpenAI API senden."
+
+msgid "Hatdat AI Publisher created the post. Estimated API cost: %1$s. Text tokens: %2$d input / %3$d output. Image estimate: %4$s."
+msgstr "Hatdat AI Publisher hat den Beitrag erstellt. Geschätzte API-Kosten: %1$s. Text-Token: %2$d Eingabe / %3$d Ausgabe. Bildschätzung: %4$s."
+
+msgid "Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI at any time."
+msgstr "Hatdat AI Publisher übermittelt zu keinem Zeitpunkt automatisch WordPress-Benutzerkonten, Passwörter, E-Mail-Adressen, Profildaten oder andere WordPress-Benutzerdatensätze an OpenAI."
+
+msgid "Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI."
+msgstr "Hatdat AI Publisher übermittelt nicht automatisch WordPress-Benutzerkonten, Passwörter, E-Mail-Adressen, Profildaten oder andere WordPress-Benutzerdatensätze an OpenAI."
+
+msgid "Hatdat AI Publisher requires your confirmation before using the OpenAI API. Please review and accept the OpenAI data processing and cost notices in the %s."
+msgstr "Hatdat AI Publisher benötigt deine Bestätigung, bevor die OpenAI API verwendet wird. Bitte prüfe und akzeptiere die OpenAI-Datenverarbeitungs- und Kostenhinweise in den %s."
+
+msgid "Hatdat AI Publisher settings"
+msgstr "AI-Publisher-Einstellungen"
+
+msgid "Hatdat AI Publisher uses the OpenAI API to generate article text and images. This requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
+msgstr "Hatdat AI Publisher verwendet die OpenAI API, um Artikeltexte und Bilder zu erzeugen. Dafür ist ein separater OpenAI-API-Account erforderlich und es können zusätzliche Kosten entstehen, die von OpenAI berechnet werden."
+
+msgid "Hatdat AI Publisher – Generate post"
+msgstr "Hatdat AI Publisher – Beitrag erzeugen"
+
+msgid "Hatdat AI Publisher – Prompts"
+msgstr "Hatdat AI Publisher – Prompts"
+
+msgid "Hatdat AI Publisher – Settings"
+msgstr "Hatdat AI Publisher – Einstellungen"
+
+msgid "API keys"
+msgstr "API-Keys"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Check API billing"
+msgstr "API-Abrechnung prüfen"
+
+msgid "Choose the default size for generated featured images."
+msgstr "Wähle die Standardgröße für generierte Beitragsbilder."
+
+msgid "Confirmed on %s."
+msgstr "Bestätigt am %s."
+
+msgid "Content generation is currently disabled."
+msgstr "Die Inhaltserzeugung ist derzeit deaktiviert."
+
+msgid "content must be valid WordPress HTML with H2/H3 headings, paragraphs and links."
+msgstr "content muss valides WordPress-HTML mit H2/H3-Überschriften, Absätzen und Links sein."
+
+msgid "Cost estimate is approximate. It uses the rates configured in Hatdat AI Publisher settings and may differ from the final OpenAI invoice."
+msgstr "Die Kostenschätzung ist ein Näherungswert. Grundlage sind die in den AI-Publisher-Einstellungen hinterlegten Preise. Die tatsächlichen OpenAI-Kosten können abweichen."
+
+msgid "Create new prompt"
+msgstr "Neuen Prompt anlegen"
+
+msgid "credits"
+msgstr "Guthaben"
+
+msgid "Default category"
+msgstr "Standardkategorie"
+
+msgid "Default featured image"
+msgstr "Standard-Beitragsbild"
+
+msgid "Default SEO plugin"
+msgstr "Standard-SEO-Plugin"
+
+msgid "Default status"
+msgstr "Standardstatus"
+
+msgid "Default: gpt-5.5. You can change this if you want to use another available OpenAI text model."
+msgstr "Standard: gpt-5.5. Du kannst dies ändern, wenn du ein anderes verfügbares OpenAI-Textmodell verwenden möchtest."
+
+msgid "Default: gpt-image-2. You can change this if you want to use another available OpenAI image model."
+msgstr "Standard: gpt-image-2. Du kannst dies ändern, wenn du ein anderes verfügbares OpenAI-Bildmodell verwenden möchtest."
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Details: %s"
+msgstr "Details: %s"
+
+msgid "Detect automatically"
+msgstr "Automatisch erkennen"
+
+msgid "Disable featured image generation automatically if OpenAI reports missing quota or billing problems."
+msgstr "Beitragsbild-Generierung automatisch deaktivieren, wenn OpenAI fehlendes Kontingent oder Abrechnungsprobleme meldet."
+
+msgid "Do not set SEO data"
+msgstr "Keine SEO-Daten setzen"
+
+msgid "Draft"
+msgstr "Entwurf"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Edit prompt"
+msgstr "Prompt bearbeiten"
+
+msgid "Enter your OpenAI API key. You can create and manage API keys in your OpenAI account dashboard:"
+msgstr "Gib deinen OpenAI API-Key ein. Du kannst API-Keys in deinem OpenAI-Konto-Dashboard erstellen und verwalten:"
+
+msgid "Estimated API cost"
+msgstr "Geschätzte API-Kosten"
+
+msgid "estimated image cost"
+msgstr "geschätzte Bildkosten"
+
+msgid "Estimated input price"
+msgstr "Geschätzter Eingabepreis"
+
+msgid "estimated input tokens"
+msgstr "geschätzte Eingabe-Token"
+
+msgid "Estimated output price"
+msgstr "Geschätzter Ausgabepreis"
+
+msgid "estimated output tokens"
+msgstr "geschätzte Ausgabe-Token"
+
+msgid "estimated text cost"
+msgstr "geschätzte Textkosten"
+
+msgid "estimated total cost"
+msgstr "geschätzte Gesamtkosten"
+
+msgid "Existing prompts"
+msgstr "Vorhandene Prompts"
+
+msgid "Featured image"
+msgstr "Beitragsbild"
+
+msgid "Featured image generation failed because no active OpenAI API credit was detected. The post was created without a featured image and image generation was disabled in the plugin settings."
+msgstr "Die Beitragsbild-Generierung ist fehlgeschlagen, weil kein aktives OpenAI API-Guthaben erkannt wurde. Der Beitrag wurde ohne Beitragsbild erstellt und die Bildgenerierung wurde in den Plugin-Einstellungen deaktiviert."
+
+msgid "Featured image generation has been disabled automatically to avoid unnecessary failed image requests."
+msgstr "Die Beitragsbild-Generierung wurde automatisch deaktiviert, um unnötige fehlgeschlagene Bildanfragen zu vermeiden."
+
+msgid "Featured image generation is currently disabled in the plugin settings. This may have been changed automatically after a billing or quota error."
+msgstr "Die Beitragsbild-Generierung ist derzeit in den Plugin-Einstellungen deaktiviert. Dies kann nach einem Abrechnungs- oder Kontingentfehler automatisch geändert worden sein."
+
+msgid "Full HD 16:9 – 1920 × 1088"
+msgstr "Full HD 16:9 – 1920 × 1088"
+
+msgid "Generate featured image"
+msgstr "Beitragsbild erzeugen"
+
+msgid "Generate post"
+msgstr "Beitrag erzeugen"
+
+msgid "Go to Hatdat AI Publisher settings"
+msgstr "Zu den AI-Publisher-Einstellungen"
+
+msgid "I confirm that I am responsible for complying with applicable privacy, copyright and data protection regulations when submitting content to OpenAI through Hatdat AI Publisher."
+msgstr "Ich bestätige, dass ich für die Einhaltung geltender Datenschutz-, Urheberrechts- und sonstiger rechtlicher Anforderungen verantwortlich bin, wenn ich über Hatdat AI Publisher Inhalte an OpenAI übermittle."
+
+msgid "I understand that prompts, article content and image generation requests entered into Hatdat AI Publisher are transmitted to OpenAI for processing."
+msgstr "Ich verstehe, dass in Hatdat AI Publisher eingegebene Prompts, Artikelinhalte und Bildgenerierungsanfragen zur Verarbeitung an OpenAI übermittelt werden."
+
+msgid "I understand that using the OpenAI API requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
+msgstr "Ich verstehe, dass die Nutzung der OpenAI API einen separaten OpenAI-API-Account erfordert und zusätzliche Kosten verursachen kann, die von OpenAI berechnet werden."
+
+msgid "Image generation usually causes the largest share of API costs."
+msgstr "Die Bildgenerierung verursacht normalerweise den größten Anteil der API-Kosten."
+
+msgid "Image model"
+msgstr "Bildmodell"
+
+msgid "Image prompt is missing."
+msgstr "Bildprompt fehlt."
+
+msgid "Image size"
+msgstr "Bildgröße"
+
+msgid "Important before using Hatdat AI Publisher:"
+msgstr "Wichtig vor der Nutzung von Hatdat AI Publisher:"
+
+msgid "Input is missing."
+msgstr "Eingabe fehlt."
+
+msgid "Landscape 16:9 – 1792 × 1024"
+msgstr "Querformat 16:9 – 1792 × 1024"
+
+msgid "Landscape 3:2 – 1536 × 1024"
+msgstr "Querformat 3:2 – 1536 × 1024"
+
+msgid "News article"
+msgstr "News-Artikel"
+
+msgid "No active API credit was detected. Text and image generation will fail until billing or credits are fixed."
+msgstr "Es wurde kein aktives API-Guthaben erkannt. Text- und Bildgenerierung schlagen fehl, bis Abrechnung oder Guthaben korrigiert wurden."
+
+msgid "No default"
+msgstr "Keine Vorgabe"
+
+msgid "No image data received."
+msgstr "Keine Bilddaten erhalten."
+
+msgid "Only content intentionally submitted through the Hatdat AI Publisher administration interface is transmitted to OpenAI. Site administrators are responsible for ensuring that submitted content complies with applicable privacy and data protection laws."
+msgstr "Nur Inhalte, die bewusst über die AI-Publisher-Administrationsoberfläche abgesendet werden, werden an OpenAI übermittelt. Website-Administratoren sind dafür verantwortlich, dass übermittelte Inhalte den geltenden Datenschutzgesetzen entsprechen."
+
+msgid "OpenAI API billing check"
+msgstr "OpenAI API-Abrechnungsprüfung"
+
+msgid "OpenAI API check successful. The API key is valid, the configured text model responded, and no quota error was returned."
+msgstr "OpenAI API-Prüfung erfolgreich. Der API-Key ist gültig, das konfigurierte Textmodell hat geantwortet und OpenAI hat keinen Kontingentfehler gemeldet."
+
+msgid "OpenAI API data processing and costs"
+msgstr "OpenAI-API-Datenverarbeitung und Kosten"
+
+msgid "OpenAI API Key"
+msgstr "OpenAI API-Key"
+
+msgid "OpenAI API key is missing."
+msgstr "OpenAI API-Key fehlt."
+
+msgid "OpenAI API keys"
+msgstr "OpenAI API-Keys"
+
+msgid "OpenAI API quota exceeded. Please check your OpenAI billing status, available %1$s and %2$s."
+msgstr "OpenAI API-Kontingent überschritten. Bitte prüfe deinen OpenAI-Abrechnungsstatus, verfügbares %1$s und %2$s."
+
+msgid "OpenAI is currently unavailable or returned a server error. Please try again later."
+msgstr "OpenAI ist derzeit nicht verfügbar oder hat einen Serverfehler zurückgegeben. Bitte versuche es später erneut."
+
+msgid "OpenAI message: %s"
+msgstr "OpenAI-Meldung: %s"
+
+msgid "OpenAI rate limit exceeded. Please try again later or check your organization %s."
+msgstr "OpenAI-Rate-Limit überschritten. Bitte versuche es später erneut oder prüfe die %s deiner Organisation."
+
+msgid "OpenAI rejected the request as invalid. Please check the selected model, image size and prompt configuration."
+msgstr "OpenAI hat die Anfrage als ungültig abgelehnt. Bitte prüfe das ausgewählte Modell, die Bildgröße und die Prompt-Konfiguration."
+
+msgid "OpenAI rejected the request because it may violate the content policy. Please change the prompt or article input."
+msgstr "OpenAI hat die Anfrage abgelehnt, weil sie möglicherweise gegen die Inhaltsrichtlinien verstößt. Bitte ändere den Prompt oder die Artikeleingabe."
+
+msgid "OpenAI returned an error."
+msgstr "OpenAI hat einen Fehler zurückgegeben."
+
+msgid "Pending review"
+msgstr "Ausstehend"
+
+msgid "Please confirm the OpenAI data processing and cost notices before checking the API connection."
+msgstr "Bitte bestätige die OpenAI-Datenverarbeitungs- und Kostenhinweise, bevor du die API-Verbindung prüfst."
+
+msgid "Please confirm the OpenAI data processing and cost notices in the Hatdat AI Publisher settings before generating content."
+msgstr "Bitte bestätige die OpenAI-Datenverarbeitungs- und Kostenhinweise in den AI-Publisher-Einstellungen, bevor du Inhalte erzeugst."
+
+msgid "Portrait 2:3 – 1024 × 1536"
+msgstr "Hochformat 2:3 – 1024 × 1536"
+
+msgid "Private"
+msgstr "Privat"
+
+msgid "Prompt"
+msgstr "Prompt"
+
+msgid "Prompt deleted."
+msgstr "Prompt gelöscht."
+
+msgid "Prompt not found."
+msgstr "Prompt nicht gefunden."
+
+msgid "Prompt saved."
+msgstr "Prompt gespeichert."
+
+msgid "Prompts"
+msgstr "Prompts"
+
+msgid "Prompts, article content and image generation requests entered by administrators are transmitted to OpenAI for processing."
+msgstr "Prompts, Artikelinhalte und Bildgenerierungsanfragen, die von Administratoren eingegeben werden, werden zur Verarbeitung an OpenAI übermittelt."
+
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+msgid "Rank Math"
+msgstr "Rank Math"
+
+msgid "Really delete this prompt?"
+msgstr "Diesen Prompt wirklich löschen?"
+
+msgid "Reply only as valid JSON without Markdown. Structure:"
+msgstr "Antworte ausschließlich als valides JSON ohne Markdown. Struktur:"
+
+msgid "Required confirmations"
+msgstr "Erforderliche Bestätigungen"
+
+msgid "Save prompt"
+msgstr "Prompt speichern"
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "SEO plugin"
+msgstr "SEO-Plugin"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Square – 1024 × 1024"
+msgstr "Quadratisch – 1024 × 1024"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "System prompt"
+msgstr "Systemprompt"
+
+msgid "Text model"
+msgstr "Textmodell"
+
+msgid "The AI response is missing title or content."
+msgstr "In der KI-Antwort fehlen Titel oder Inhalt."
+
+msgid "The AI response was not valid JSON."
+msgstr "Die KI-Antwort war kein valides JSON."
+
+msgid "The OpenAI API key is invalid or was rejected. Please check the API key in the Hatdat AI Publisher settings or create a new key under %s."
+msgstr "Der OpenAI API-Key ist ungültig oder wurde abgelehnt. Bitte prüfe den API-Key in den AI-Publisher-Einstellungen oder erstelle unter %s einen neuen Key."
+
+msgid "The request is too long for the selected text model. Please shorten the input or use a model with a larger context window."
+msgstr "Die Anfrage ist für das ausgewählte Textmodell zu lang. Bitte kürze die Eingabe oder nutze ein Modell mit größerem Kontextfenster."
+
+msgid "The selected OpenAI model is not available for this API key or does not exist. Please check the configured text and image models."
+msgstr "Das ausgewählte OpenAI-Modell ist für diesen API-Key nicht verfügbar oder existiert nicht. Bitte prüfe die konfigurierten Text- und Bildmodelle."
+
+msgid "This sends a tiny test request to OpenAI. It checks whether the API key works, the selected text model is available and OpenAI does not report a quota or billing error."
+msgstr "Dies sendet eine kleine Testanfrage an OpenAI. Dabei wird geprüft, ob der API-Key funktioniert, das ausgewählte Textmodell verfügbar ist und OpenAI keinen Kontingent- oder Abrechnungsfehler meldet."
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Update prompt"
+msgstr "Prompt aktualisieren"
+
+msgid "URL or topic"
+msgstr "URL oder Thema"
+
+msgid "usage limits"
+msgstr "Nutzungslimits"
+
+msgid "USD per 1 million input tokens. Used only for the local cost estimate. Please compare this value with the current OpenAI pricing page."
+msgstr "USD pro 1 Million Eingabe-Token. Wird nur für die lokale Kostenschätzung verwendet. Bitte vergleiche diesen Wert mit der aktuellen OpenAI-Preisseite."
+
+msgid "USD per 1 million output tokens. Used only for the local cost estimate. Image prices are estimated from the selected image size."
+msgstr "USD pro 1 Million Ausgabe-Token. Wird nur für die lokale Kostenschätzung verwendet. Bildpreise werden anhand der ausgewählten Bildgröße geschätzt."
+
+msgid "Using the OpenAI API requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
+msgstr "Die Nutzung der OpenAI API erfordert einen separaten OpenAI-API-Account und kann zusätzliche Kosten verursachen, die von OpenAI berechnet werden."
+
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+msgid "You do not have permission to perform this action."
+msgstr "Du hast keine Berechtigung, diese Aktion auszuführen."
+
+msgid "OpenAI cost estimation"
+msgstr "OpenAI-Kostenschätzung"
+
+msgid "The cost estimation is an approximation based on the configured Hatdat AI Publisher pricing values and the currently selected models/image size."
+msgstr "Die Kostenschätzung ist ein Näherungswert auf Basis der konfigurierten AI-Publisher-Preise sowie der aktuell ausgewählten Modelle/Bildgröße."
+
+msgid "Estimated text cost per article"
+msgstr "Geschätzte Textkosten pro Beitrag"
+
+msgid "Estimated image cost"
+msgstr "Geschätzte Bildkosten"
+
+msgid "Estimated total cost per generated post"
+msgstr "Geschätzte Gesamtkosten pro generiertem Beitrag"
+
+msgid "Configured image size"
+msgstr "Konfigurierte Bildgröße"
+
+msgid "Estimated OpenAI input tokens"
+msgstr "Geschätzte OpenAI-Eingabe-Token"
+
+msgid "Estimated OpenAI output tokens"
+msgstr "Geschätzte OpenAI-Ausgabe-Token"
+
+msgid "OpenAI available credit"
+msgstr "Verfügbares OpenAI-Guthaben"
+
+msgid "OpenAI used credit"
+msgstr "Verbrauchtes OpenAI-Guthaben"
+
+msgid "OpenAI total granted credit"
+msgstr "Gesamtes gewährtes OpenAI-Guthaben"
+
+msgid "OpenAI credit information"
+msgstr "OpenAI-Guthabeninformationen"
+
+msgid "No credit information available. Please check your API key and OpenAI billing page."
+msgstr "Keine Guthabeninformationen verfügbar. Bitte prüfe deinen API-Key und die OpenAI-Abrechnungsseite."
+
+
+msgid "Not available via API. The article generation can still work if the API key and billing are valid."
+msgstr "Nicht per API verfügbar. Die Beitragserzeugung kann trotzdem funktionieren, wenn API-Key und Abrechnung gültig sind."
+
+msgid "Note: OpenAI credit/balance data could not be retrieved automatically. Please use the billing check in the settings or verify the balance directly in the OpenAI dashboard."
+msgstr "Hinweis: OpenAI-Guthaben-/Kontostandsdaten konnten nicht automatisch abgerufen werden. Bitte nutze die API-Abrechnungsprüfung in den Einstellungen oder prüfe das Guthaben direkt im OpenAI-Dashboard."
+
+msgid "Waiting for GPT response…"
+msgstr "Warte auf GPT-Antwort …"
+
+msgid "Checking OpenAI API connection…"
+msgstr "Prüfe OpenAI-API-Verbindung …"
+
+msgid "Hatdat AI Publisher created the content. Estimated API cost: %1$s. Text tokens: %2$d input / %3$d output. Image estimate: %4$s."
+msgstr "Hatdat AI Publisher hat den Inhalt erstellt. Geschätzte API-Kosten: %1$s. Text-Token: %2$d Eingabe / %3$d Ausgabe. Bildschätzung: %4$s."
+
+msgid "Hatdat AI Publisher – Generate content"
+msgstr "Hatdat AI Publisher – Inhalt erzeugen"
+
+msgid "Generate content"
+msgstr "Inhalt erzeugen"
+
+msgid "Content type"
+msgstr "Inhaltstyp"
+
+msgid "Post"
+msgstr "Beitrag"
+
+msgid "Page"
+msgstr "Seite"
+
+msgid "Choose whether Hatdat AI Publisher should create a blog post or a static page."
+msgstr "Wähle, ob Hatdat AI Publisher einen Blogbeitrag oder eine statische Seite erstellen soll."
+
+msgid "Estimated total cost per generated content item"
+msgstr "Geschätzte Gesamtkosten pro generiertem Inhalt"
+
+#: includes/helpers.php
+msgid ""
+"You are an AI text generator for news articles for a serious information portal.\n"
+"\n"
+"I will provide either a URL or a topic in a few words. Your task is to create an independent, detailed and easy-to-read WordPress post from it.\n"
+"\n"
+"Guidelines:\n"
+"- Do not use legally risky wording.\n"
+"- Include internal and external links in the body text. If the href is unknown, use href=\"#\".\n"
+"- If the reader is addressed directly, use an informal but respectful tone.\n"
+"- Use H2 headings.\n"
+"- Do not use emojis.\n"
+"- Provide SEO data for Rank Math or Yoast.\n"
+"- Also create an image prompt for a serious, generic 16:9 featured image.\n"
+msgstr ""
+"Du bist ein KI-Textgenerator für Nachrichtenartikel für ein seriöses Informationsportal.\n"
+"\n"
+"Ich liefere entweder eine URL oder ein Thema in wenigen Worten. Deine Aufgabe ist es, daraus einen eigenständigen, ausführlichen und gut lesbaren WordPress-Beitrag zu erstellen.\n"
+"\n"
+"Richtlinien:\n"
+"- Verwende keine rechtlich problematischen Formulierungen.\n"
+"- Baue interne und externe Links in den Fließtext ein. Falls die href unbekannt ist, verwende href=\"#\".\n"
+"- Falls Leser direkt angesprochen werden, verwende einen lockeren aber respektvollen Ton.\n"
+"- Nutze H2-Überschriften.\n"
+"- Verwende keine Emojis.\n"
+"- Liefere SEO-Daten für Rank Math oder Yoast.\n"
+"- Erstelle zusätzlich einen Bildprompt für ein seriöses generisches 16:9-Beitragsbild.\n"
+
+#: generated-v1.0.4
+msgid "Output language"
+msgstr "Ausgabesprache"
+
+#: generated-v1.0.4
+msgid "The generated post or page will be written in this language. The default is the site language, independently of the admin language and prompt language."
+msgstr "Der erzeugte Beitrag oder die erzeugte Seite wird in dieser Sprache geschrieben. Standard ist die Sprache der Website, unabhängig von Admin-Sprache und Prompt-Sprache."
+
+#: generated-v1.0.4
+msgid "Site language: %s"
+msgstr "Seitensprache: %s"
+
+#: generated-v1.0.4
+msgid "User language: %s"
+msgstr "Benutzersprache: %s"
+
+#: generated-v1.0.4
+msgid "German"
+msgstr "Deutsch"
+
+#: generated-v1.0.4
+msgid "English"
+msgstr "Englisch"
+
+#: generated-v1.0.4
+msgid "French"
+msgstr "Französisch"
+
+#: generated-v1.0.4
+msgid "Spanish"
+msgstr "Spanisch"
+
+#: generated-v1.0.4
+msgid "Italian"
+msgstr "Italienisch"
+
+#: generated-v1.0.4
+msgid "Dutch"
+msgstr "Niederländisch"
+
+#: generated-v1.0.4
+msgid "Portuguese"
+msgstr "Portugiesisch"
+
+#: generated-v1.0.4
+msgid "Polish"
+msgstr "Polnisch"
+
+#: generated-v1.0.4
+msgid "Turkish"
+msgstr "Türkisch"
+
+#: generated-v1.0.4
+msgid "Russian"
+msgstr "Russisch"
+
+#: generated-v1.0.4
+msgid "Ukrainian"
+msgstr "Ukrainisch"
+
+#: generated-v1.0.4
+msgid "Arabic"
+msgstr "Arabisch"
+
+#: generated-v1.0.4
+msgid "Chinese"
+msgstr "Chinesisch"
+
+#: generated-v1.0.4
+msgid "Japanese"
+msgstr "Japanisch"
+
+#: generated-v1.0.4
+msgid "Korean"
+msgstr "Koreanisch"
+
+#: generated-v1.0.4
+msgid "Hindi"
+msgstr "Hindi"
+
+#: generated-v1.0.4
+msgid "Swedish"
+msgstr "Schwedisch"
+
+#: generated-v1.0.4
+msgid "Danish"
+msgstr "Dänisch"
+
+#: generated-v1.0.4
+msgid "Finnish"
+msgstr "Finnisch"
+
+#: generated-v1.0.4
+msgid "Norwegian"
+msgstr "Norwegisch"
+
+#: generated-v1.0.4
+msgid "Czech"
+msgstr "Tschechisch"
+
+#: generated-v1.0.4
+msgid "Greek"
+msgstr "Griechisch"
+
+#: generated-v1.0.4
+msgid "Hebrew"
+msgstr "Hebräisch"
+
+#: generated-v1.0.4
+msgid "Indonesian"
+msgstr "Indonesisch"
+
+#: generated-v1.0.4
+msgid "Vietnamese"
+msgstr "Vietnamesisch"
+
+#: generated-v1.0.4
+msgid "Thai"
+msgstr "Thailändisch"
+
+msgid "Prompt details"
+msgstr "Prompt-Details"
+
+msgid "This is a protected standard prompt. It cannot be edited or deleted. Create a copy if you want to customize it."
+msgstr "Dies ist ein geschützter Standardprompt. Er kann nicht bearbeitet oder gelöscht werden. Erstelle eine Kopie, wenn du ihn anpassen möchtest."
+
+msgid "Prompt copied. You can edit the copy now."
+msgstr "Prompt kopiert. Du kannst die Kopie jetzt bearbeiten."
+
+msgid "Prompt language: %s"
+msgstr "Prompt-Sprache: %s"
+
+msgid "Standard prompt"
+msgstr "Standardprompt"
+
+msgid "Custom prompt"
+msgstr "Eigener Prompt"
+
+msgid "View"
+msgstr "Ansehen"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Create editable copy"
+msgstr "Bearbeitbare Kopie erstellen"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Language"
+msgstr "Sprache"

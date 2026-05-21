@@ -1,0 +1,497 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+$settings = AI_Publisher_Settings::get();
+?>
+<div class="wrap ai-publisher-wrap">
+    <h1>
+        <?php esc_html_e('Hatdat AI Publisher – Settings', 'hatdat-ai-publisher'); ?>
+    </h1>
+    <?php if (!empty($_GET['updated'])) : ?>
+        <div class="notice notice-success">
+            <p>
+                <?php esc_html_e('Settings saved.', 'hatdat-ai-publisher'); ?>
+            </p>
+        </div>
+    <?php endif; ?>
+    <form
+        method="post"
+        action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
+        class="ai-publisher-card"
+    >
+        <?php wp_nonce_field('ai_publisher_action'); ?>
+        <input
+            type="hidden"
+            name="action"
+            value="ai_publisher_save_settings"
+        >
+        <table
+            class="form-table"
+            role="presentation"
+        >
+            <tr>
+                <th>
+                    <label for="api_key">
+                        <?php esc_html_e('OpenAI API Key', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <input
+                        type="password"
+                        name="api_key"
+                        id="api_key"
+                        value="<?php echo esc_attr($settings['api_key']); ?>"
+                        class="regular-text"
+                        autocomplete="off"
+                    >
+                    <p class="description">
+                        <?php esc_html_e('Enter your OpenAI API key. You can create and manage API keys in your OpenAI account dashboard:', 'hatdat-ai-publisher'); ?>
+                        <a
+                            href="https://platform.openai.com/api-keys"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <?php esc_html_e('OpenAI API keys', 'hatdat-ai-publisher'); ?>
+                        </a>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="text_model">
+                        <?php esc_html_e('Text model', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <input
+                        type="text"
+                        name="text_model"
+                        id="text_model"
+                        value="<?php echo esc_attr($settings['text_model']); ?>"
+                        class="regular-text"
+                    >
+                    <p class="description">
+                        <?php esc_html_e('Default: gpt-5.5. You can change this if you want to use another available OpenAI text model.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="image_model">
+                        <?php esc_html_e('Image model', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <input
+                        type="text"
+                        name="image_model"
+                        id="image_model"
+                        value="<?php echo esc_attr($settings['image_model']); ?>"
+                        class="regular-text"
+                    >
+                    <p class="description">
+                        <?php esc_html_e('Default: gpt-image-2. You can change this if you want to use another available OpenAI image model.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <?php esc_html_e('Default featured image', 'hatdat-ai-publisher'); ?>
+                </th>
+                <td>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="generate_image"
+                            value="1"
+                            <?php checked((int) $settings['generate_image'], 1); ?>
+                        >
+                        <?php esc_html_e('Generate featured image', 'hatdat-ai-publisher'); ?>
+                    </label>
+                    <p class="description">
+                        <?php esc_html_e('Image generation usually causes the largest share of API costs.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="disable_image_on_billing_error"
+                            value="1"
+                            <?php checked((int) $settings['disable_image_on_billing_error'], 1); ?>
+                        >
+                        <?php esc_html_e('Disable featured image generation automatically if OpenAI reports missing quota or billing problems.', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="image_size">
+                        <?php esc_html_e('Image size', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="image_size"
+                        id="image_size"
+                    >
+                        <option
+                            value="1024x1024"
+                            <?php selected($settings['image_size'], '1024x1024'); ?>
+                        >
+                            <?php esc_html_e('Square – 1024 × 1024', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="1536x1024"
+                            <?php selected($settings['image_size'], '1536x1024'); ?>
+                        >
+                            <?php esc_html_e('Landscape 3:2 – 1536 × 1024', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="1792x1024"
+                            <?php selected($settings['image_size'], '1792x1024'); ?>
+                        >
+                            <?php esc_html_e('Landscape 16:9 – 1792 × 1024', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="1920x1088"
+                            <?php selected($settings['image_size'], '1920x1088'); ?>
+                        >
+                            <?php esc_html_e('Full HD 16:9 – 1920 × 1088', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="1024x1536"
+                            <?php selected($settings['image_size'], '1024x1536'); ?>
+                        >
+                            <?php esc_html_e('Portrait 2:3 – 1024 × 1536', 'hatdat-ai-publisher'); ?>
+                        </option>
+                    </select>
+                    <p class="description">
+                        <?php esc_html_e('Choose the default size for generated featured images.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="cost_input_usd_per_1m">
+                        <?php esc_html_e('Estimated input price', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <input
+                        type="number"
+                        step="0.0001"
+                        min="0"
+                        name="cost_input_usd_per_1m"
+                        id="cost_input_usd_per_1m"
+                        value="<?php echo esc_attr($settings['cost_input_usd_per_1m']); ?>"
+                        class="small-text"
+                    >
+                    <p class="description">
+                        <?php esc_html_e('USD per 1 million input tokens. Used only for the local cost estimate. Please compare this value with the current OpenAI pricing page.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="cost_output_usd_per_1m">
+                        <?php esc_html_e('Estimated output price', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <input
+                        type="number"
+                        step="0.0001"
+                        min="0"
+                        name="cost_output_usd_per_1m"
+                        id="cost_output_usd_per_1m"
+                        value="<?php echo esc_attr($settings['cost_output_usd_per_1m']); ?>"
+                        class="small-text"
+                    >
+                    <p class="description">
+                        <?php esc_html_e('USD per 1 million output tokens. Used only for the local cost estimate. Image prices are estimated from the selected image size.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="seo_provider">
+                        <?php esc_html_e('Default SEO plugin', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="seo_provider"
+                        id="seo_provider"
+                    >
+                        <option
+                            value="auto"
+                            <?php selected($settings['seo_provider'], 'auto'); ?>
+                        >
+                            <?php esc_html_e('Detect automatically', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="none"
+                            <?php selected($settings['seo_provider'], 'none'); ?>
+                        >
+                            <?php esc_html_e('Do not set SEO data', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="rankmath"
+                            <?php selected($settings['seo_provider'], 'rankmath'); ?>
+                        >
+                            <?php esc_html_e('Rank Math', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="yoast"
+                            <?php selected($settings['seo_provider'], 'yoast'); ?>
+                        >
+                            <?php esc_html_e('Yoast SEO', 'hatdat-ai-publisher'); ?>
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="default_status">
+                        <?php esc_html_e('Default status', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <select
+                        name="default_status"
+                        id="default_status"
+                    >
+                        <option
+                            value="draft"
+                            <?php selected($settings['default_status'], 'draft'); ?>
+                        >
+                            <?php esc_html_e('Draft', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="pending"
+                            <?php selected($settings['default_status'], 'pending'); ?>
+                        >
+                            <?php esc_html_e('Pending review', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="publish"
+                            <?php selected($settings['default_status'], 'publish'); ?>
+                        >
+                            <?php esc_html_e('Publish', 'hatdat-ai-publisher'); ?>
+                        </option>
+                        <option
+                            value="private"
+                            <?php selected($settings['default_status'], 'private'); ?>
+                        >
+                            <?php esc_html_e('Private', 'hatdat-ai-publisher'); ?>
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="default_category">
+                        <?php esc_html_e('Default category', 'hatdat-ai-publisher'); ?>
+                    </label>
+                </th>
+                <td>
+                    <?php
+                    wp_dropdown_categories(
+                        array(
+                            'show_option_none' => __('No default', 'hatdat-ai-publisher'),
+                            'name'             => 'default_category',
+                            'selected'         => (int) $settings['default_category'],
+                            'hide_empty'       => false,
+                        )
+                    );
+                    ?>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <?php esc_html_e('OpenAI API data processing and costs', 'hatdat-ai-publisher'); ?>
+        </h2>
+        <div class="notice notice-warning inline">
+            <p>
+                <strong>
+                    <?php esc_html_e('Important before using Hatdat AI Publisher:', 'hatdat-ai-publisher'); ?>
+                </strong>
+            </p>
+            <p>
+                <?php esc_html_e('Hatdat AI Publisher uses the OpenAI API to generate article text and images. This requires a separate OpenAI API account and may generate additional costs billed by OpenAI.', 'hatdat-ai-publisher'); ?>
+            </p>
+            <p>
+                <?php esc_html_e('Prompts, article content and image generation requests entered by administrators are transmitted to OpenAI for processing.', 'hatdat-ai-publisher'); ?>
+            </p>
+            <p>
+                <?php esc_html_e('Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI at any time.', 'hatdat-ai-publisher'); ?>
+            </p>
+        </div>
+        <table
+            class="form-table"
+            role="presentation"
+        >
+            <tr>
+                <th>
+                    <?php esc_html_e('Required confirmations', 'hatdat-ai-publisher'); ?>
+                </th>
+                <td>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="openai_consent_data_processing"
+                            value="1"
+                            <?php checked((int) $settings['openai_consent_data_processing'], 1); ?>
+                        >
+                        <?php esc_html_e('I understand that prompts, article content and image generation requests entered into Hatdat AI Publisher are transmitted to OpenAI for processing.', 'hatdat-ai-publisher'); ?>
+                    </label>
+                    <br>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="openai_consent_costs"
+                            value="1"
+                            <?php checked((int) $settings['openai_consent_costs'], 1); ?>
+                        >
+                        <?php esc_html_e('I understand that using the OpenAI API requires a separate OpenAI API account and may generate additional costs billed by OpenAI.', 'hatdat-ai-publisher'); ?>
+                    </label>
+                    <br>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="openai_consent_responsibility"
+                            value="1"
+                            <?php checked((int) $settings['openai_consent_responsibility'], 1); ?>
+                        >
+                        <?php esc_html_e('I confirm that I am responsible for complying with applicable privacy, copyright and data protection regulations when submitting content to OpenAI through Hatdat AI Publisher.', 'hatdat-ai-publisher'); ?>
+                    </label>
+                    <?php if (!empty($settings['openai_consent_timestamp'])) : ?>
+                        <p class="description">
+                            <?php
+                            printf(
+                                esc_html__('Confirmed on %s.', 'hatdat-ai-publisher'),
+                                esc_html($settings['openai_consent_timestamp'])
+                            );
+                            ?>
+                        </p>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </table>
+        <?php submit_button(__('Save settings', 'hatdat-ai-publisher')); ?>
+    </form>
+
+    <form
+        method="post"
+        action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
+        class="ai-publisher-card"
+        data-ai-publisher-busy="1"
+        data-ai-publisher-busy-message="<?php echo esc_attr__('Checking OpenAI API connection…', 'hatdat-ai-publisher'); ?>"
+    >
+        <?php wp_nonce_field('ai_publisher_action'); ?>
+        <input
+            type="hidden"
+            name="action"
+            value="ai_publisher_check_billing"
+        >
+        <h2>
+            <?php esc_html_e('OpenAI API billing check', 'hatdat-ai-publisher'); ?>
+        </h2>
+        <p>
+            <?php esc_html_e('This sends a tiny test request to OpenAI. It checks whether the API key works, the selected text model is available and OpenAI does not report a quota or billing error.', 'hatdat-ai-publisher'); ?>
+        </p>
+        <?php submit_button(__('Check API billing', 'hatdat-ai-publisher'), 'secondary'); ?>
+    </form>
+</div>
+
+<?php
+$cost_settings = AI_Publisher_Settings::get();
+$estimate = AI_Publisher_Cost_Estimator::estimate_from_character_count(
+    8000,
+    !empty($cost_settings['generate_image']),
+    $cost_settings
+);
+
+$credit_data = null;
+$credit_error = null;
+
+if (!empty($cost_settings['api_key'])) {
+    $client = new AI_Publisher_OpenAI_Client($cost_settings['api_key']);
+    $credit_data = $client->get_credit_balance();
+
+    if (is_wp_error($credit_data)) {
+        $credit_error = $credit_data->get_error_message();
+        $credit_data = null;
+    }
+}
+?>
+
+<div class="ai-publisher-card" style="margin-top:20px;padding:20px;">
+    <h2><?php esc_html_e('OpenAI cost estimation', 'hatdat-ai-publisher'); ?></h2>
+
+    <p>
+        <?php esc_html_e('The cost estimation is an approximation based on the configured Hatdat AI Publisher pricing values and the currently selected models/image size.', 'hatdat-ai-publisher'); ?>
+    </p>
+
+    <table class="widefat striped" style="max-width:900px;">
+        <tbody>
+            <tr>
+                <td><strong><?php esc_html_e('Estimated text cost per article', 'hatdat-ai-publisher'); ?></strong></td>
+                <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $estimate['text_cost'])); ?></td>
+            </tr>
+
+            <tr>
+                <td><strong><?php esc_html_e('Estimated image cost', 'hatdat-ai-publisher'); ?></strong></td>
+                <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $estimate['image_cost'])); ?></td>
+            </tr>
+
+            <tr>
+                <td><strong><?php esc_html_e('Estimated total cost per generated content item', 'hatdat-ai-publisher'); ?></strong></td>
+                <td><strong><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $estimate['total_cost'])); ?></strong></td>
+            </tr>
+
+            <tr>
+                <td><strong><?php esc_html_e('Configured image size', 'hatdat-ai-publisher'); ?></strong></td>
+                <td><?php echo esc_html($estimate['image_size']); ?></td>
+            </tr>
+
+            <tr>
+                <td><strong><?php esc_html_e('Estimated OpenAI input tokens', 'hatdat-ai-publisher'); ?></strong></td>
+                <td><?php echo esc_html(number_format_i18n((int) $estimate['input_tokens'])); ?></td>
+            </tr>
+
+            <tr>
+                <td><strong><?php esc_html_e('Estimated OpenAI output tokens', 'hatdat-ai-publisher'); ?></strong></td>
+                <td><?php echo esc_html(number_format_i18n((int) $estimate['output_tokens'])); ?></td>
+            </tr>
+
+            <?php if ($credit_data) : ?>
+                <tr>
+                    <td><strong><?php esc_html_e('OpenAI available credit', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td>
+                        <strong><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $credit_data['total_available'])); ?></strong>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong><?php esc_html_e('OpenAI used credit', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $credit_data['total_used'])); ?></td>
+                </tr>
+
+                <tr>
+                    <td><strong><?php esc_html_e('OpenAI total granted credit', 'hatdat-ai-publisher'); ?></strong></td>
+                    <td><?php echo esc_html(AI_Publisher_Cost_Estimator::format_usd((float) $credit_data['total_granted'])); ?></td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <?php if ($credit_error) : ?>
+        <div class="notice notice-warning inline" style="margin-top:15px;">
+            <p>
+                <?php echo esc_html($credit_error); ?>
+            </p>
+        </div>
+    <?php endif; ?>
+</div>

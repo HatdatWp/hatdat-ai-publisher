@@ -1,0 +1,154 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+$prompts = AI_Publisher_Prompt_Manager::all();
+$edit_id = absint($_GET['edit'] ?? 0);
+$edit    = $edit_id ? AI_Publisher_Prompt_Manager::get($edit_id) : null;
+$edit_is_system = $edit && !empty($edit->is_system);
+?>
+<div class="wrap ai-publisher-wrap">
+    <h1>
+        <?php esc_html_e('Hatdat AI Publisher – Prompts', 'hatdat-ai-publisher'); ?>
+        <a href="<?php echo esc_url(admin_url('admin.php?page=ai-publisher-prompts')); ?>" class="page-title-action">
+            <?php esc_html_e('Add new prompt', 'hatdat-ai-publisher'); ?>
+        </a>
+    </h1>
+    <?php if (!empty($_GET['ai_error'])) : ?>
+        <div class="notice notice-error">
+            <p><?php echo esc_html(wp_unslash($_GET['ai_error'])); ?></p>
+        </div>
+    <?php endif; ?>
+    <?php if (!empty($_GET['updated'])) : ?>
+        <div class="notice notice-success">
+            <p><?php esc_html_e('Prompt saved.', 'hatdat-ai-publisher'); ?></p>
+        </div>
+    <?php endif; ?>
+    <?php if (!empty($_GET['deleted'])) : ?>
+        <div class="notice notice-success">
+            <p><?php esc_html_e('Prompt deleted.', 'hatdat-ai-publisher'); ?></p>
+        </div>
+    <?php endif; ?>
+    <?php if (!empty($_GET['copied'])) : ?>
+        <div class="notice notice-success">
+            <p><?php esc_html_e('Prompt copied. You can edit the copy now.', 'hatdat-ai-publisher'); ?></p>
+        </div>
+    <?php endif; ?>
+    <div class="ai-publisher-grid">
+        <div class="ai-publisher-card">
+            <h2>
+                <?php echo esc_html($edit ? __('Prompt details', 'hatdat-ai-publisher') : __('Create new prompt', 'hatdat-ai-publisher')); ?>
+            </h2>
+            <?php if ($edit_is_system) : ?>
+                <div class="notice notice-info inline">
+                    <p>
+                        <?php esc_html_e('This is a protected standard prompt. It cannot be edited or deleted. Create a copy if you want to customize it.', 'hatdat-ai-publisher'); ?>
+                    </p>
+                </div>
+            <?php endif; ?>
+            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                <?php wp_nonce_field('ai_publisher_action'); ?>
+                <input type="hidden" name="action" value="ai_publisher_save_prompt">
+                <input type="hidden" name="prompt_id" value="<?php echo $edit ? (int) $edit->ID : 0; ?>">
+                <p>
+                    <label>
+                        <?php esc_html_e('Title', 'hatdat-ai-publisher'); ?>
+                        <br>
+                        <input
+                            type="text"
+                            name="prompt_title"
+                            class="large-text"
+                            value="<?php echo esc_attr($edit ? $edit->post_title : ''); ?>"
+                            required
+                            <?php disabled($edit_is_system); ?>
+                        >
+                    </label>
+                </p>
+                <?php if ($edit && !empty($edit->language)) : ?>
+                    <p class="description">
+                        <?php
+                        printf(
+                            esc_html__('Prompt language: %s', 'hatdat-ai-publisher'),
+                            esc_html(strtoupper((string) $edit->language))
+                        );
+                        ?>
+                    </p>
+                <?php endif; ?>
+                <p>
+                    <label>
+                        <?php esc_html_e('System prompt', 'hatdat-ai-publisher'); ?>
+                        <br>
+                        <textarea
+                            name="prompt_content"
+                            rows="20"
+                            class="large-text code"
+                            required
+                            <?php disabled($edit_is_system); ?>
+                        ><?php echo esc_textarea($edit ? $edit->post_content : ''); ?></textarea>
+                    </label>
+                </p>
+                <?php if (!$edit_is_system) : ?>
+                    <?php submit_button($edit ? __('Update prompt', 'hatdat-ai-publisher') : __('Save prompt', 'hatdat-ai-publisher')); ?>
+                <?php endif; ?>
+            </form>
+            <?php if ($edit_is_system) : ?>
+                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                    <?php wp_nonce_field('ai_publisher_action'); ?>
+                    <input type="hidden" name="action" value="ai_publisher_copy_prompt">
+                    <input type="hidden" name="prompt_id" value="<?php echo (int) $edit->ID; ?>">
+                    <?php submit_button(__('Create editable copy', 'hatdat-ai-publisher'), 'primary'); ?>
+                </form>
+            <?php endif; ?>
+        </div>
+        <div class="ai-publisher-card">
+            <h2><?php esc_html_e('Existing prompts', 'hatdat-ai-publisher'); ?></h2>
+            <p>
+                <a class="button button-primary" href="<?php echo esc_url(admin_url('admin.php?page=ai-publisher-prompts')); ?>">
+                    <?php esc_html_e('Create new prompt', 'hatdat-ai-publisher'); ?>
+                </a>
+            </p>
+            <table class="widefat striped">
+                <thead>
+                    <tr>
+                        <th><?php esc_html_e('Title', 'hatdat-ai-publisher'); ?></th>
+                        <th><?php esc_html_e('Type', 'hatdat-ai-publisher'); ?></th>
+                        <th><?php esc_html_e('Language', 'hatdat-ai-publisher'); ?></th>
+                        <th><?php esc_html_e('Action', 'hatdat-ai-publisher'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($prompts as $prompt) : ?>
+                        <?php $is_system = !empty($prompt->is_system); ?>
+                        <tr>
+                            <td><?php echo esc_html($prompt->post_title); ?></td>
+                            <td>
+                                <?php echo esc_html($is_system ? __('Standard prompt', 'hatdat-ai-publisher') : __('Custom prompt', 'hatdat-ai-publisher')); ?>
+                            </td>
+                            <td><?php echo !empty($prompt->language) ? esc_html(strtoupper((string) $prompt->language)) : '&mdash;'; ?></td>
+                            <td>
+                                <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=ai-publisher-prompts&edit=' . (int) $prompt->ID)); ?>">
+                                    <?php echo esc_html($is_system ? __('View', 'hatdat-ai-publisher') : __('Edit', 'hatdat-ai-publisher')); ?>
+                                </a>
+                                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="ai-publisher-inline-form">
+                                    <?php wp_nonce_field('ai_publisher_action'); ?>
+                                    <input type="hidden" name="action" value="ai_publisher_copy_prompt">
+                                    <input type="hidden" name="prompt_id" value="<?php echo (int) $prompt->ID; ?>">
+                                    <button class="button"><?php esc_html_e('Copy', 'hatdat-ai-publisher'); ?></button>
+                                </form>
+                                <?php if (!$is_system) : ?>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="ai-publisher-inline-form" onsubmit="return confirm('<?php echo esc_js(__('Really delete this prompt?', 'hatdat-ai-publisher')); ?>');">
+                                        <?php wp_nonce_field('ai_publisher_action'); ?>
+                                        <input type="hidden" name="action" value="ai_publisher_delete_prompt">
+                                        <input type="hidden" name="prompt_id" value="<?php echo (int) $prompt->ID; ?>">
+                                        <button class="button button-link-delete"><?php esc_html_e('Delete', 'hatdat-ai-publisher'); ?></button>
+                                    </form>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
