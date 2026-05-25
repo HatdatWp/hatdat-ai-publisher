@@ -4,7 +4,7 @@ Tags: ai, openai, seo, content, publishing
 Requires at least: 6.8
 Requires PHP: 8.1
 Tested up to: 7.0
-Stable tag: 1.1.5
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,12 @@ Hatdat AI Publisher can write SEO metadata for Rank Math and Yoast SEO. SEO inte
 6. Configure the default models, image size and SEO provider.
 
 == Changelog ==
+
+= 1.1.7 =
+* Renamed the protected standard prompt from News Article to Pillar Content in all supported languages.
+* Added protected Short Article system prompts in German, English, French and Spanish.
+* Fixed saving of prompt keys for newly created and copied custom prompts.
+* Added automatic prompt database migration for existing development installations.
 
 = 1.1.5 =
 * Renamed the plugin text domain to match the WordPress.org slug `hatdat-ai-publisher`.

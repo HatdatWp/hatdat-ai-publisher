@@ -5,8 +5,10 @@ if (!defined('ABSPATH')) {
 
 final class AI_Publisher_Prompt_Manager {
     private const DB_VERSION_OPTION = 'ai_publisher_prompt_db_version';
-    private const DB_VERSION = '1.0.10';
-    private const SYSTEM_PROMPT_KEY_NEWS = 'news_article';
+    private const DB_VERSION = '1.1.7';
+    private const SYSTEM_PROMPT_KEY_LEGACY_NEWS = 'news_article';
+    private const SYSTEM_PROMPT_KEY_PILLAR_CONTENT = 'pillar_content';
+    private const SYSTEM_PROMPT_KEY_SHORT_ARTICLE = 'short_article';
 
     public static function maybe_install(): void {
         if (get_option(self::DB_VERSION_OPTION) === self::DB_VERSION) {
@@ -40,7 +42,9 @@ final class AI_Publisher_Prompt_Manager {
         ) {$charset_collate};";
 
         dbDelta($sql);
+        self::migrate_legacy_news_prompt_key();
         self::seed_system_prompts();
+        self::backfill_custom_prompt_keys();
         self::cleanup_legacy_cpt_prompts();
         update_option(self::DB_VERSION_OPTION, self::DB_VERSION, false);
     }
@@ -58,11 +62,7 @@ final class AI_Publisher_Prompt_Manager {
         self::maybe_install();
         global $wpdb;
 
-        $prompts = [];
-        $system = self::get_system_news_prompt_for_admin_locale();
-        if ($system) {
-            $prompts[] = $system;
-        }
+        $prompts = self::get_system_prompts_for_admin_locale();
 
         $table = esc_sql(self::table_name());
         $rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom prompt table used only in admin; caching would risk stale prompt lists.
@@ -129,7 +129,7 @@ final class AI_Publisher_Prompt_Manager {
         $inserted = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom prompt table write.
             self::table_name(),
             [
-                'prompt_key' => '',
+                'prompt_key' => self::generate_custom_prompt_key($title),
                 'language' => '',
                 'title' => $title,
                 'content' => $content,
@@ -179,7 +179,7 @@ final class AI_Publisher_Prompt_Manager {
         $inserted = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom prompt table write.
             self::table_name(),
             [
-                'prompt_key' => '',
+                'prompt_key' => self::generate_custom_prompt_key($title),
                 'language' => (string) ($existing->language ?? ''),
                 'title' => $title,
                 'content' => (string) $existing->post_content,
@@ -193,37 +193,51 @@ final class AI_Publisher_Prompt_Manager {
         return $inserted === false ? new WP_Error('prompt_copy_failed', __('Prompt could not be copied.', 'hatdat-ai-publisher')) : (int) $wpdb->insert_id;
     }
 
-    private static function get_system_news_prompt_for_admin_locale(): ?object {
-        global $wpdb;
-
+    private static function get_system_prompts_for_admin_locale(): array {
         $language = self::locale_to_supported_language(function_exists('get_user_locale') ? (string) get_user_locale() : 'en_US');
         $fallback = 'en';
+        $prompts = [];
+
+        foreach (self::system_prompt_keys() as $key) {
+            $row = self::get_system_prompt_row($key, $language);
+            if (!$row && $language !== $fallback) {
+                $row = self::get_system_prompt_row($key, $fallback);
+            }
+            if ($row) {
+                $prompts[] = self::row_to_prompt($row);
+            }
+        }
+
+        return $prompts;
+    }
+
+    private static function get_system_prompt_row(string $key, string $language): ?object {
+        global $wpdb;
 
         $table = esc_sql(self::table_name());
         $row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom prompt table lookup.
             $wpdb->prepare(
                 "SELECT * FROM {$table} WHERE is_system = 1 AND prompt_key = %s AND language = %s LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
-                self::SYSTEM_PROMPT_KEY_NEWS,
+                $key,
                 $language
             )
         );
 
-        if (!$row && $language !== $fallback) {
-            $row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom prompt table lookup.
-                $wpdb->prepare(
-                    "SELECT * FROM {$table} WHERE is_system = 1 AND prompt_key = %s AND language = %s LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
-                    self::SYSTEM_PROMPT_KEY_NEWS,
-                    $fallback
-                )
-            );
-        }
+        return $row ?: null;
+    }
 
-        return $row ? self::row_to_prompt($row) : null;
+    private static function system_prompt_keys(): array {
+        return [
+            self::SYSTEM_PROMPT_KEY_PILLAR_CONTENT,
+            self::SYSTEM_PROMPT_KEY_SHORT_ARTICLE,
+        ];
     }
 
     private static function seed_system_prompts(): void {
-        foreach (self::system_news_prompts() as $language => $data) {
-            self::upsert_system_prompt(self::SYSTEM_PROMPT_KEY_NEWS, $language, $data['title'], $data['content']);
+        foreach (self::system_prompts() as $key => $prompts) {
+            foreach ($prompts as $language => $data) {
+                self::upsert_system_prompt($key, $language, $data['title'], $data['content']);
+            }
         }
     }
 
@@ -265,6 +279,103 @@ final class AI_Publisher_Prompt_Manager {
             $data,
             ['%s', '%s', '%s', '%s', '%d', '%s', '%s']
         );
+    }
+
+    private static function migrate_legacy_news_prompt_key(): void {
+        global $wpdb;
+
+        $table = esc_sql(self::table_name());
+        $legacy_rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time system prompt migration.
+            $wpdb->prepare(
+                "SELECT id, language FROM {$table} WHERE is_system = 1 AND prompt_key = %s", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
+                self::SYSTEM_PROMPT_KEY_LEGACY_NEWS
+            )
+        );
+
+        foreach ($legacy_rows ?: [] as $legacy_row) {
+            $target_id = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time system prompt migration.
+                $wpdb->prepare(
+                    "SELECT id FROM {$table} WHERE is_system = 1 AND prompt_key = %s AND language = %s LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
+                    self::SYSTEM_PROMPT_KEY_PILLAR_CONTENT,
+                    (string) $legacy_row->language
+                )
+            );
+
+            if ($target_id > 0) {
+                $wpdb->delete(self::table_name(), ['id' => (int) $legacy_row->id], ['%d']); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time system prompt migration.
+                continue;
+            }
+
+            $wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time system prompt migration.
+                self::table_name(),
+                [
+                    'prompt_key' => self::SYSTEM_PROMPT_KEY_PILLAR_CONTENT,
+                    'updated_at' => current_time('mysql'),
+                ],
+                ['id' => (int) $legacy_row->id],
+                ['%s', '%s'],
+                ['%d']
+            );
+        }
+    }
+
+    private static function backfill_custom_prompt_keys(): void {
+        global $wpdb;
+
+        $table = esc_sql(self::table_name());
+        $rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time custom prompt migration.
+            "SELECT id, title FROM {$table} WHERE is_system = 0 AND (prompt_key = '' OR prompt_key IS NULL) ORDER BY id ASC" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
+        );
+
+        foreach ($rows ?: [] as $row) {
+            $wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time custom prompt migration.
+                self::table_name(),
+                ['prompt_key' => self::generate_custom_prompt_key((string) $row->title, (int) $row->id)],
+                ['id' => (int) $row->id],
+                ['%s'],
+                ['%d']
+            );
+        }
+    }
+
+    private static function generate_custom_prompt_key(string $title, int $ignore_id = 0): string {
+        global $wpdb;
+
+        $base = sanitize_key(sanitize_title($title));
+        if ($base === '') {
+            $base = 'custom_prompt';
+        }
+
+        $base = 'custom_' . $base;
+        $key = $base;
+        $suffix = 2;
+        $table = esc_sql(self::table_name());
+
+        while (true) {
+            if ($ignore_id > 0) {
+                $existing_id = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prompt key uniqueness check during prompt save.
+                    $wpdb->prepare(
+                        "SELECT id FROM {$table} WHERE prompt_key = %s AND id <> %d LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
+                        $key,
+                        $ignore_id
+                    )
+                );
+            } else {
+                $existing_id = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prompt key uniqueness check during prompt save.
+                    $wpdb->prepare(
+                        "SELECT id FROM {$table} WHERE prompt_key = %s LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is generated internally from the WordPress prefix and escaped.
+                        $key
+                    )
+                );
+            }
+
+            if ($existing_id <= 0) {
+                return $key;
+            }
+
+            $key = $base . '_' . $suffix;
+            $suffix++;
+        }
     }
 
     private static function cleanup_legacy_cpt_prompts(): void {
@@ -309,14 +420,14 @@ final class AI_Publisher_Prompt_Manager {
         return in_array($code, ['de', 'en', 'fr', 'es'], true) ? $code : 'en';
     }
 
-    private static function system_news_prompts(): array {
-        return [
+    private static function system_prompts(): array {
+        $pillar = [
             'de' => [
-                'title' => 'News Artikel',
+                'title' => 'Pillar Content',
                 'content' => <<<'PROMPT'
-Du bist ein KI-Textgenerator für News-Artikel für ein seriöses Informationsportal.
+Du bist ein KI-Textgenerator für ausführliche Pillar-Content-Artikel für ein seriöses Informationsportal.
 
-Ich gebe dir entweder eine URL oder ein Thema in wenigen Worten. Deine Aufgabe ist es, daraus einen eigenständigen, ausführlichen und gut lesbaren WordPress-Beitrag zu erstellen.
+Ich gebe dir entweder eine URL oder ein Thema in wenigen Worten. Deine Aufgabe ist es, daraus einen eigenständigen, ausführlichen, gut strukturierten und gut lesbaren WordPress-Beitrag zu erstellen.
 
 Richtlinien:
 - Verwende keine rechtlich riskanten Formulierungen.
@@ -329,11 +440,11 @@ Richtlinien:
 PROMPT,
             ],
             'en' => [
-                'title' => 'News article',
+                'title' => 'Pillar Content',
                 'content' => <<<'PROMPT'
-You are an AI text generator for news articles for a serious information portal.
+You are an AI text generator for detailed pillar content articles for a serious information portal.
 
-I will provide either a URL or a topic in a few words. Your task is to create an independent, detailed and easy-to-read WordPress post from it.
+I will provide either a URL or a topic in a few words. Your task is to create an independent, detailed, well-structured and easy-to-read WordPress post from it.
 
 Guidelines:
 - Do not use legally risky wording.
@@ -346,11 +457,11 @@ Guidelines:
 PROMPT,
             ],
             'fr' => [
-                'title' => 'Article d’actualité',
+                'title' => 'Pillar Content',
                 'content' => <<<'PROMPT'
-Tu es un générateur de texte IA pour des articles d’actualité destinés à un portail d’information sérieux.
+Tu es un générateur de texte IA pour des articles de contenu pilier détaillés destinés à un portail d’information sérieux.
 
-Je te fournirai soit une URL, soit un sujet en quelques mots. Ta tâche consiste à créer à partir de cela un article WordPress autonome, détaillé et facile à lire.
+Je te fournirai soit une URL, soit un sujet en quelques mots. Ta tâche consiste à créer à partir de cela un article WordPress autonome, détaillé, bien structuré et facile à lire.
 
 Consignes:
 - N’utilise pas de formulations juridiquement risquées.
@@ -363,11 +474,11 @@ Consignes:
 PROMPT,
             ],
             'es' => [
-                'title' => 'Artículo de noticias',
+                'title' => 'Pillar Content',
                 'content' => <<<'PROMPT'
-Eres un generador de textos con IA para artículos de noticias destinados a un portal de información serio.
+Eres un generador de textos con IA para artículos detallados de contenido pilar destinados a un portal de información serio.
 
-Te proporcionaré una URL o un tema en pocas palabras. Tu tarea es crear a partir de ello una entrada de WordPress independiente, detallada y fácil de leer.
+Te proporcionaré una URL o un tema en pocas palabras. Tu tarea es crear a partir de ello una entrada de WordPress independiente, detallada, bien estructurada y fácil de leer.
 
 Directrices:
 - No utilices formulaciones jurídicamente arriesgadas.
@@ -379,6 +490,28 @@ Directrices:
 - Crea también un prompt de imagen para una imagen destacada seria y genérica en formato 16:9.
 PROMPT,
             ],
+        ];
+
+        $short_article = [];
+        foreach ($pillar as $language => $data) {
+            $short_article[$language] = $data;
+        }
+        $short_article['de']['title'] = 'Kurzer Artikel';
+        $short_article['de']['content'] .= "
+- Erstelle einen kompakten Artikel mit ungefähr 500 bis 700 Wörtern.";
+        $short_article['en']['title'] = 'Short Article';
+        $short_article['en']['content'] .= "
+- Create a concise article with approximately 500 to 700 words.";
+        $short_article['fr']['title'] = 'Article court';
+        $short_article['fr']['content'] .= "
+- Crée un article concis d’environ 500 à 700 mots.";
+        $short_article['es']['title'] = 'Artículo corto';
+        $short_article['es']['content'] .= "
+- Crea un artículo conciso de aproximadamente 500 a 700 palabras.";
+
+        return [
+            self::SYSTEM_PROMPT_KEY_PILLAR_CONTENT => $pillar,
+            self::SYSTEM_PROMPT_KEY_SHORT_ARTICLE => $short_article,
         ];
     }
 }
