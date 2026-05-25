@@ -25,6 +25,9 @@ final class AI_Publisher_Plugin {
     public function run(): void {
         AI_Publisher_Settings::ensure_current_model_defaults();
         AI_Publisher_Prompt_Manager::maybe_install();
+        
+        add_action('admin_bar_menu', [$this, '_addAdminBarNewSubmenu'], 100);
+        
         if (is_admin()) {
             (new AI_Publisher_Admin())->init();
         }
@@ -53,5 +56,22 @@ final class AI_Publisher_Plugin {
 
     public static function deactivate(): void {
         // No rewrite rules are registered by Hatdat AI Publisher.
+    }
+    
+    public function _addAdminBarNewSubmenu($wp_admin_bar): void {
+        if (!is_admin_bar_showing()) {
+            return;
+        }
+
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        $wp_admin_bar->add_node([
+            'id'     => 'hatdat-ai-publisher-new-content',
+            'parent' => 'new-content',
+            'title'  => __('Hatdat AI Publisher Content', 'hatdat-ai-publisher'),
+            'href'   => admin_url('admin.php?page=hatdat-ai-publisher'),
+        ]);
     }
 }

@@ -3,7 +3,7 @@
  * Plugin Name: Hatdat AI Publisher
  * Plugin URI: https://hatdat.de/ai-publisher-smart-ai-content-publishing-for-wordpress/
  * Description: AI-assisted creation of WordPress posts including featured images and SEO metadata.
- * Version: 1.1.5
+ * Version: 1.1.6
  * Author: Peter Liebetrau
  * Author URI: https://hatdat.de
  * Requires at least: 6.8

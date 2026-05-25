@@ -1,448 +1,990 @@
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Hatdat AI Publisher 1.0.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: Hatdat AI Publisher 1.1.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-24 00:00+0000\n"
+"PO-Revision-Date: 2026-05-24 00:00+0000\n"
+"Last-Translator: Hatdat AI Publisher\n"
 "Language: es_ES\n"
+"Language-Team: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
 
+#: includes/class-plugin.php:73
+msgid "Hatdat AI Publisher Content"
+msgstr "Contenido de Hatdat AI Publisher"
 
+#: admin/views/prompts.phtml:117
 msgid "Action"
-msgstr "Action"
+msgstr "Acción"
 
+#: admin/views/prompts.phtml:15
 msgid "Add new prompt"
 msgstr "Añadir nuevo prompt"
 
-msgid "AI Prompt"
-msgstr "AI Prompt"
-
-msgid "AI Prompts"
-msgstr "AI Prompts"
-
-msgid "Hatdat AI Publisher"
-msgstr "Hatdat AI Publisher"
-
-msgid "Hatdat AI Publisher can send prompts, article content and image generation requests entered by administrators to the OpenAI API for processing."
-msgstr "Hatdat AI Publisher can send prompts, article content and image generation requests entered by administrators to the OpenAI API for processing."
-
-msgid "Hatdat AI Publisher created the post. Estimated API cost: %1$s. Text tokens: %2$d input / %3$d output. Image estimate: %4$s."
-msgstr "Hatdat AI Publisher created the post. Estimated API cost: %1$s. Text tokens: %2$d input / %3$d output. Image estimate: %4$s."
-
-msgid "Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI at any time."
-msgstr "Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI at any time."
-
-msgid "Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI."
-msgstr "Hatdat AI Publisher does not automatically transmit WordPress user accounts, passwords, email addresses, profile data or other WordPress user records to OpenAI."
-
-msgid "Hatdat AI Publisher requires your confirmation before using the OpenAI API. Please review and accept the OpenAI data processing and cost notices in the %s."
-msgstr "Hatdat AI Publisher requires your confirmation before using the OpenAI API. Please review and accept the OpenAI data processing and cost notices in the %s."
-
-msgid "Hatdat AI Publisher settings"
-msgstr "ajustes de Hatdat AI Publisher"
-
-msgid "Hatdat AI Publisher uses the OpenAI API to generate article text and images. This requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
-msgstr "Hatdat AI Publisher uses the OpenAI API to generate article text and images. This requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
-
-msgid "Hatdat AI Publisher – Generate post"
-msgstr "Hatdat AI Publisher – Generate post"
-
-msgid "Hatdat AI Publisher – Prompts"
-msgstr "Hatdat AI Publisher – Prompts"
-
-msgid "Hatdat AI Publisher – Settings"
-msgstr "Hatdat AI Publisher – Settings"
-
+#: includes/class-admin.php:131
 msgid "API keys"
-msgstr "API keys"
+msgstr "claves API"
 
+#: includes/helpers.php:37
+msgid "Arabic"
+msgstr "Árabe"
+
+#: admin/views/generate.phtml:235
 msgid "Category"
-msgstr "Category"
+msgstr "Categoría"
 
+#: admin/views/settings.phtml:404
 msgid "Check API billing"
-msgstr "Check API billing"
+msgstr "Comprobar facturación de API"
 
-msgid "Choose the default size for generated featured images."
-msgstr "Choose the default size for generated featured images."
-
-msgid "Confirmed on %s."
-msgstr "Confirmado el %s."
-
-msgid "content must be valid WordPress HTML with H2/H3 headings, paragraphs and links."
-msgstr "content must be valid WordPress HTML with H2/H3 headings, paragraphs and links."
-
-msgid "Cost estimate is approximate. It uses the rates configured in Hatdat AI Publisher settings and may differ from the final OpenAI invoice."
-msgstr "Cost estimate is approximate. It uses the rates configured in Hatdat AI Publisher settings and may differ from the final OpenAI invoice."
-
-msgid "Create new prompt"
-msgstr "Crear nuevo prompt"
-
-msgid "credits"
-msgstr "credits"
-
-msgid "Default category"
-msgstr "Default category"
-
-msgid "Default featured image"
-msgstr "Default featured image"
-
-msgid "Default SEO plugin"
-msgstr "Default SEO plugin"
-
-msgid "Default status"
-msgstr "Default status"
-
-msgid "Default: gpt-5.5. You can change this if you want to use another available OpenAI text model."
-msgstr "Default: gpt-5.5. You can change this if you want to use another available OpenAI text model."
-
-msgid "Default: gpt-image-2. You can change this if you want to use another available OpenAI image model."
-msgstr "Default: gpt-image-2. You can change this if you want to use another available OpenAI image model."
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Details: %s"
-msgstr "Details: %s"
-
-msgid "Detect automatically"
-msgstr "Detect automatically"
-
-msgid "Disable featured image generation automatically if OpenAI reports missing quota or billing problems."
-msgstr "Disable featured image generation automatically if OpenAI reports missing quota or billing problems."
-
-msgid "Do not set SEO data"
-msgstr "Do not set SEO data"
-
-msgid "Draft"
-msgstr "Draft"
-
-msgid "Edit"
-msgstr "Edit"
-
-msgid "Edit prompt"
-msgstr "Edit prompt"
-
-msgid "Enter your OpenAI API key. You can create and manage API keys in your OpenAI account dashboard:"
-msgstr "Enter your OpenAI API key. You can create and manage API keys in your OpenAI account dashboard:"
-
-msgid "Estimated API cost"
-msgstr "Estimated API cost"
-
-msgid "estimated image cost"
-msgstr "estimated image cost"
-
-msgid "Estimated input price"
-msgstr "Estimated input price"
-
-msgid "estimated input tokens"
-msgstr "estimated input tokens"
-
-msgid "Estimated output price"
-msgstr "Estimated output price"
-
-msgid "estimated output tokens"
-msgstr "estimated output tokens"
-
-msgid "estimated text cost"
-msgstr "estimated text cost"
-
-msgid "estimated total cost"
-msgstr "estimated total cost"
-
-msgid "Existing prompts"
-msgstr "Existing prompts"
-
-msgid "Featured image"
-msgstr "Featured image"
-
-msgid "Featured image generation failed because no active OpenAI API credit was detected. The post was created without a featured image and image generation was disabled in the plugin settings."
-msgstr "Featured image generation failed because no active OpenAI API credit was detected. The post was created without a featured image and image generation was disabled in the plugin settings."
-
-msgid "Featured image generation has been disabled automatically to avoid unnecessary failed image requests."
-msgstr "Featured image generation has been disabled automatically to avoid unnecessary failed image requests."
-
-msgid "Featured image generation is currently disabled in the plugin settings. This may have been changed automatically after a billing or quota error."
-msgstr "Featured image generation is currently disabled in the plugin settings. This may have been changed automatically after a billing or quota error."
-
-msgid "Full HD 16:9 – 1920 × 1088"
-msgstr "Full HD 16:9 – 1920 × 1088"
-
-msgid "Generate featured image"
-msgstr "Generate featured image"
-
-msgid "Generate post"
-msgstr "Generate post"
-
-msgid "I confirm that I am responsible for complying with applicable privacy, copyright and data protection regulations when submitting content to OpenAI through Hatdat AI Publisher."
-msgstr "I confirm that I am responsible for complying with applicable privacy, copyright and data protection regulations when submitting content to OpenAI through Hatdat AI Publisher."
-
-msgid "I understand that prompts, article content and image generation requests entered into Hatdat AI Publisher are transmitted to OpenAI for processing."
-msgstr "I understand that prompts, article content and image generation requests entered into Hatdat AI Publisher are transmitted to OpenAI for processing."
-
-msgid "I understand that using the OpenAI API requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
-msgstr "I understand that using the OpenAI API requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
-
-msgid "Image generation usually causes the largest share of API costs."
-msgstr "Image generation usually causes the largest share of API costs."
-
-msgid "Image model"
-msgstr "Image model"
-
-msgid "Image prompt is missing."
-msgstr "Image prompt is missing."
-
-msgid "Image size"
-msgstr "Image size"
-
-msgid "Important before using Hatdat AI Publisher:"
-msgstr "Importante antes de usar Hatdat AI Publisher:"
-
-msgid "Input is missing."
-msgstr "Input is missing."
-
-msgid "Landscape 16:9 – 1792 × 1024"
-msgstr "Landscape 16:9 – 1792 × 1024"
-
-msgid "Landscape 3:2 – 1536 × 1024"
-msgstr "Landscape 3:2 – 1536 × 1024"
-
-msgid "News article"
-msgstr "News article"
-
-msgid "No active API credit was detected. Text and image generation will fail until billing or credits are fixed."
-msgstr "No active API credit was detected. Text and image generation will fail until billing or credits are fixed."
-
-msgid "No default"
-msgstr "No default"
-
-msgid "No image data received."
-msgstr "No image data received."
-
-msgid "Only content intentionally submitted through the Hatdat AI Publisher administration interface is transmitted to OpenAI. Site administrators are responsible for ensuring that submitted content complies with applicable privacy and data protection laws."
-msgstr "Only content intentionally submitted through the Hatdat AI Publisher administration interface is transmitted to OpenAI. Site administrators are responsible for ensuring that submitted content complies with applicable privacy and data protection laws."
-
-msgid "OpenAI API billing check"
-msgstr "OpenAI API billing check"
-
-msgid "OpenAI API check successful. The API key is valid, the configured text model responded, and no quota error was returned."
-msgstr "OpenAI API check successful. The API key is valid, the configured text model responded, and no quota error was returned."
-
-msgid "OpenAI API data processing and costs"
-msgstr "Procesamiento de datos de la API de OpenAI y costes"
-
-msgid "OpenAI API Key"
-msgstr "OpenAI API Key"
-
-msgid "OpenAI API key is missing."
-msgstr "OpenAI API key is missing."
-
-msgid "OpenAI API keys"
-msgstr "OpenAI API keys"
-
-msgid "OpenAI API quota exceeded. Please check your OpenAI billing status, available %1$s and %2$s."
-msgstr "OpenAI API quota exceeded. Please check your OpenAI billing status, available %1$s and %2$s."
-
-msgid "OpenAI is currently unavailable or returned a server error. Please try again later."
-msgstr "OpenAI is currently unavailable or returned a server error. Please try again later."
-
-msgid "OpenAI message: %s"
-msgstr "OpenAI message: %s"
-
-msgid "OpenAI rate limit exceeded. Please try again later or check your organization %s."
-msgstr "OpenAI rate limit exceeded. Please try again later or check your organization %s."
-
-msgid "OpenAI rejected the request as invalid. Please check the selected model, image size and prompt configuration."
-msgstr "OpenAI rejected the request as invalid. Please check the selected model, image size and prompt configuration."
-
-msgid "OpenAI rejected the request because it may violate the content policy. Please change the prompt or article input."
-msgstr "OpenAI rejected the request because it may violate the content policy. Please change the prompt or article input."
-
-msgid "OpenAI returned an error."
-msgstr "OpenAI returned an error."
-
-msgid "Pending review"
-msgstr "Pending review"
-
-msgid "Please confirm the OpenAI data processing and cost notices before checking the API connection."
-msgstr "Please confirm the OpenAI data processing and cost notices before checking the API connection."
-
-msgid "Please confirm the OpenAI data processing and cost notices in the Hatdat AI Publisher settings before generating content."
-msgstr "Please confirm the OpenAI data processing and cost notices in the Hatdat AI Publisher settings before generating content."
-
-msgid "Portrait 2:3 – 1024 × 1536"
-msgstr "Portrait 2:3 – 1024 × 1536"
-
-msgid "Private"
-msgstr "Private"
-
-msgid "Prompt"
-msgstr "Prompt"
-
-msgid "Prompt deleted."
-msgstr "Prompt eliminado."
-
-msgid "Prompt not found."
-msgstr "Prompt not found."
-
-msgid "Prompt saved."
-msgstr "Prompt guardado."
-
-msgid "Prompts"
-msgstr "Prompts"
-
-msgid "Prompts, article content and image generation requests entered by administrators are transmitted to OpenAI for processing."
-msgstr "Prompts, article content and image generation requests entered by administrators are transmitted to OpenAI for processing."
-
-msgid "Publish"
-msgstr "Publish"
-
-msgid "Rank Math"
-msgstr "Rank Math"
-
-msgid "Really delete this prompt?"
-msgstr "¿Eliminar realmente este prompt?"
-
-msgid "Reply only as valid JSON without Markdown. Structure:"
-msgstr "Reply only as valid JSON without Markdown. Structure:"
-
-msgid "Required confirmations"
-msgstr "Confirmaciones obligatorias"
-
-msgid "Save prompt"
-msgstr "Guardar prompt"
-
-msgid "Save settings"
-msgstr "Save settings"
-
-msgid "SEO plugin"
-msgstr "SEO plugin"
-
-msgid "Settings"
-msgstr "Settings"
-
-msgid "Settings saved."
-msgstr "Settings saved."
-
-msgid "Square – 1024 × 1024"
-msgstr "Square – 1024 × 1024"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "System prompt"
-msgstr "System prompt"
-
-msgid "Text model"
-msgstr "Text model"
-
-msgid "The AI response is missing title or content."
-msgstr "The AI response is missing title or content."
-
-msgid "The AI response was not valid JSON."
-msgstr "The AI response was not valid JSON."
-
-msgid "The OpenAI API key is invalid or was rejected. Please check the API key in the Hatdat AI Publisher settings or create a new key under %s."
-msgstr "The OpenAI API key is invalid or was rejected. Please check the API key in the Hatdat AI Publisher settings or create a new key under %s."
-
-msgid "The request is too long for the selected text model. Please shorten the input or use a model with a larger context window."
-msgstr "The request is too long for the selected text model. Please shorten the input or use a model with a larger context window."
-
-msgid "The selected OpenAI model is not available for this API key or does not exist. Please check the configured text and image models."
-msgstr "The selected OpenAI model is not available for this API key or does not exist. Please check the configured text and image models."
-
-msgid "This sends a tiny test request to OpenAI. It checks whether the API key works, the selected text model is available and OpenAI does not report a quota or billing error."
-msgstr "This sends a tiny test request to OpenAI. It checks whether the API key works, the selected text model is available and OpenAI does not report a quota or billing error."
-
-msgid "Title"
-msgstr "Title"
-
-msgid "Update prompt"
-msgstr "Update prompt"
-
-msgid "URL or topic"
-msgstr "URL or topic"
-
-msgid "usage limits"
-msgstr "usage limits"
-
-msgid "USD per 1 million input tokens. Used only for the local cost estimate. Please compare this value with the current OpenAI pricing page."
-msgstr "USD per 1 million input tokens. Used only for the local cost estimate. Please compare this value with the current OpenAI pricing page."
-
-msgid "USD per 1 million output tokens. Used only for the local cost estimate. Image prices are estimated from the selected image size."
-msgstr "USD per 1 million output tokens. Used only for the local cost estimate. Image prices are estimated from the selected image size."
-
-msgid "Using the OpenAI API requires a separate OpenAI API account and may generate additional costs billed by OpenAI."
-msgstr "El uso de la API de OpenAI requiere una cuenta API de OpenAI independiente y puede generar costes adicionales facturados por OpenAI."
-
-msgid "Yoast SEO"
-msgstr "Yoast SEO"
-
-msgid "You do not have permission to perform this action."
-msgstr "You do not have permission to perform this action."
-
-msgid "Content generation is currently disabled."
-msgstr "La generación de contenido está desactivada actualmente."
-
-msgid "Go to Hatdat AI Publisher settings"
-msgstr "Ir a los ajustes de Hatdat AI Publisher"
-
-msgid "Waiting for GPT response…"
-msgstr "Esperando la respuesta de GPT…"
-
+#: admin/views/settings.phtml:390
 msgid "Checking OpenAI API connection…"
 msgstr "Comprobando la conexión con la API de OpenAI…"
 
-msgid "Hatdat AI Publisher created the content. Estimated API cost: %1$s. Text tokens: %2$d input / %3$d output. Image estimate: %4$s."
-msgstr "Hatdat AI Publisher creó el contenido. Coste estimado de la API: %1$s. Tokens de texto: %2$d entrada / %3$d salida. Estimación de imagen: %4$s."
+#: includes/helpers.php:38
+msgid "Chinese"
+msgstr "Chino"
 
-msgid "Hatdat AI Publisher – Generate content"
-msgstr "Hatdat AI Publisher – Generar contenido"
+#: admin/views/settings.phtml:170
+msgid "Choose the default size for generated featured images."
+msgstr "Elige el tamaño predeterminado de las imágenes destacadas generadas."
 
-msgid "Generate content"
-msgstr "Generar contenido"
+#: admin/views/generate.phtml:228
+msgid ""
+"Choose whether Hatdat AI Publisher should create a blog post or a static "
+"page."
+msgstr ""
+"Elige si Hatdat AI Publisher debe crear una entrada de blog o una página "
+"estática."
 
+#: admin/views/generate.phtml:85 admin/views/settings.phtml:455
+msgid "Configured image size"
+msgstr "Tamaño de imagen configurado"
+
+#: admin/views/settings.phtml:373
+#, python-format
+msgid "Confirmed on %s."
+msgstr "Confirmado el %s."
+
+#: admin/views/generate.phtml:27
+msgid "Content generation is currently disabled."
+msgstr "La generación de contenido está desactivada actualmente."
+
+#: includes/class-openai-client.php:22
+msgid ""
+"content must be valid WordPress HTML with H2/H3 headings, paragraphs and "
+"links."
+msgstr ""
+"el contenido debe ser HTML válido de WordPress con encabezados H2/H3, "
+"párrafos y enlaces."
+
+#: admin/views/generate.phtml:209
 msgid "Content type"
 msgstr "Tipo de contenido"
 
-msgid "Post"
-msgstr "Entrada"
-
-msgid "Page"
-msgstr "Página"
-
-msgid "Choose whether Hatdat AI Publisher should create a blog post or a static page."
-msgstr "Elige si Hatdat AI Publisher debe crear una entrada de blog o una página estática."
-
-msgid "Estimated total cost per generated content item"
-msgstr "Coste total estimado por contenido generado"
-
-msgid "Prompt details"
-msgstr "Detalles del prompt"
-
-msgid "This is a protected standard prompt. It cannot be edited or deleted. Create a copy if you want to customize it."
-msgstr "Este es un prompt estándar protegido. No se puede editar ni eliminar. Crea una copia si quieres personalizarlo."
-
-msgid "Prompt copied. You can edit the copy now."
-msgstr "Prompt copiado. Ahora puedes editar la copia."
-
-msgid "Prompt language: %s"
-msgstr "Idioma del prompt: %s"
-
-msgid "Standard prompt"
-msgstr "Prompt estándar"
-
-msgid "Custom prompt"
-msgstr "Prompt personalizado"
-
-msgid "View"
-msgstr "Ver"
-
+#: admin/views/prompts.phtml:137
 msgid "Copy"
 msgstr "Copiar"
 
+#: includes/class-prompt-manager.php:176
+#, python-format
+msgid "Copy of %s"
+msgstr "Copia de %s"
+
+#: admin/views/prompts.phtml:100
 msgid "Create editable copy"
 msgstr "Crear copia editable"
 
+#: admin/views/prompts.phtml:41 admin/views/prompts.phtml:108
+msgid "Create new prompt"
+msgstr "Crear nuevo prompt"
+
+#: includes/class-admin.php:119
+msgid "credits"
+msgstr "créditos"
+
+#: admin/views/prompts.phtml:126
+msgid "Custom prompt"
+msgstr "Prompt personalizado"
+
+#: includes/helpers.php:46
+msgid "Czech"
+msgstr "Checo"
+
+#: includes/helpers.php:43
+msgid "Danish"
+msgstr "Danés"
+
+#: admin/views/settings.phtml:295
+msgid "Default category"
+msgstr "Categoría predeterminada"
+
+#: admin/views/settings.phtml:101
+msgid "Default featured image"
+msgstr "Imagen destacada predeterminada"
+
+#: admin/views/settings.phtml:219
+msgid "Default SEO plugin"
+msgstr "Plugin SEO predeterminado"
+
+#: admin/views/settings.phtml:257
+msgid "Default status"
+msgstr "Estado predeterminado"
+
+#: admin/views/settings.phtml:76
+msgid ""
+"Default: gpt-5.5. You can change this if you want to use another "
+"available OpenAI text model."
+msgstr ""
+"Predeterminado: gpt-5.5. Puedes cambiarlo si quieres usar otro modelo de "
+"texto de OpenAI disponible."
+
+#: admin/views/settings.phtml:95
+msgid ""
+"Default: gpt-image-2. You can change this if you want to use another "
+"available OpenAI image model."
+msgstr ""
+"Predeterminado: gpt-image-2. Puedes cambiarlo si quieres usar otro modelo"
+" de imagen de OpenAI disponible."
+
+#: admin/views/prompts.phtml:144
+msgid "Delete"
+msgstr "Eliminar"
+
+#: includes/class-openai-client.php:242
+#, python-format
+msgid "Details: %s"
+msgstr "Detalles: %s"
+
+#: admin/views/generate.phtml:304 admin/views/settings.phtml:231
+msgid "Detect automatically"
+msgstr "Detectar automáticamente"
+
+#: admin/views/settings.phtml:123
+msgid ""
+"Disable featured image generation automatically if OpenAI reports missing"
+" quota or billing problems."
+msgstr ""
+"Desactivar automáticamente la generación de imágenes destacadas si OpenAI"
+" informa de falta de cuota o problemas de facturación."
+
+#: admin/views/generate.phtml:310 admin/views/settings.phtml:237
+msgid "Do not set SEO data"
+msgstr "No establecer datos SEO"
+
+#: admin/views/generate.phtml:266 admin/views/settings.phtml:269
+msgid "Draft"
+msgstr "Borrador"
+
+#: includes/helpers.php:31
+msgid "Dutch"
+msgstr "Neerlandés"
+
+#: admin/views/prompts.phtml:131
+msgid "Edit"
+msgstr "Editar"
+
+#: includes/helpers.php:27
+msgid "English"
+msgstr "Inglés"
+
+#: admin/views/settings.phtml:50
+msgid ""
+"Enter your OpenAI API key. You can create and manage API keys in your "
+"OpenAI account dashboard:"
+msgstr ""
+"Introduce tu clave API de OpenAI. Puedes crear y gestionar claves API en "
+"el panel de tu cuenta de OpenAI:"
+
+#: includes/class-admin.php:39
+msgid "Estimated API cost"
+msgstr "Coste API estimado"
+
+#: includes/class-admin.php:43
+msgid "estimated image cost"
+msgstr "coste de imagen estimado"
+
+#: admin/views/generate.phtml:77 admin/views/settings.phtml:445
+msgid "Estimated image cost"
+msgstr "Coste de imagen estimado"
+
+#: admin/views/settings.phtml:177
+msgid "Estimated input price"
+msgstr "Precio de entrada estimado"
+
+#: includes/class-admin.php:40
+msgid "estimated input tokens"
+msgstr "tokens de entrada estimados"
+
+#: admin/views/generate.phtml:89 admin/views/settings.phtml:460
+msgid "Estimated OpenAI input tokens"
+msgstr "Tokens de entrada OpenAI estimados"
+
+#: admin/views/generate.phtml:93 admin/views/settings.phtml:465
+msgid "Estimated OpenAI output tokens"
+msgstr "Tokens de salida OpenAI estimados"
+
+#: admin/views/settings.phtml:198
+msgid "Estimated output price"
+msgstr "Precio de salida estimado"
+
+#: includes/class-admin.php:41
+msgid "estimated output tokens"
+msgstr "tokens de salida estimados"
+
+#: includes/class-admin.php:42
+msgid "estimated text cost"
+msgstr "coste de texto estimado"
+
+#: admin/views/generate.phtml:73 admin/views/settings.phtml:440
+msgid "Estimated text cost per article"
+msgstr "Coste de texto estimado por artículo"
+
+#: includes/class-admin.php:44
+msgid "estimated total cost"
+msgstr "coste total estimado"
+
+#: admin/views/generate.phtml:81 admin/views/settings.phtml:450
+msgid "Estimated total cost per generated content item"
+msgstr "Coste total estimado por contenido generado"
+
+#: admin/views/prompts.phtml:105
+msgid "Existing prompts"
+msgstr "Prompts existentes"
+
+#: admin/views/generate.phtml:329
+msgid "Featured image"
+msgstr "Imagen destacada"
+
+#: includes/class-admin.php:362
+msgid ""
+"Featured image generation failed because no active OpenAI API credit was "
+"detected. The post was created without a featured image and image "
+"generation was disabled in the plugin settings."
+msgstr ""
+"La generación de la imagen destacada falló porque no se detectó crédito "
+"activo de la API de OpenAI. La entrada se creó sin imagen destacada y la "
+"generación de imágenes se desactivó en los ajustes del plugin."
+
+#: includes/class-admin.php:237
+msgid ""
+"Featured image generation has been disabled automatically to avoid "
+"unnecessary failed image requests."
+msgstr ""
+"La generación de imágenes destacadas se ha desactivado automáticamente "
+"para evitar solicitudes de imagen fallidas innecesarias."
+
+#: admin/views/generate.phtml:343
+msgid ""
+"Featured image generation is currently disabled in the plugin settings. "
+"This may have been changed automatically after a billing or quota error."
+msgstr ""
+"La generación de imágenes destacadas está desactivada actualmente en los "
+"ajustes del plugin. Esto puede haberse cambiado automáticamente tras un "
+"error de facturación o cuota."
+
+#: includes/helpers.php:44
+msgid "Finnish"
+msgstr "Finés"
+
+#: includes/helpers.php:28
+msgid "French"
+msgstr "Francés"
+
+#: admin/views/settings.phtml:160
+msgid "Full HD 16:9 – 1920 × 1088"
+msgstr "Full HD 16:9 – 1920 × 1088"
+
+#: admin/views/generate.phtml:349 includes/class-admin.php:163
+msgid "Generate content"
+msgstr "Generar contenido"
+
+#: admin/views/generate.phtml:339 admin/views/settings.phtml:111
+msgid "Generate featured image"
+msgstr "Generar imagen destacada"
+
+#: includes/helpers.php:26
+msgid "German"
+msgstr "Alemán"
+
+#: admin/views/generate.phtml:38
+msgid "Go to Hatdat AI Publisher settings"
+msgstr "Ir a los ajustes de Hatdat AI Publisher"
+
+#: includes/helpers.php:47
+msgid "Greek"
+msgstr "Griego"
+
+#: includes/class-admin.php:154 includes/class-admin.php:155
+msgid "Hatdat AI Publisher"
+msgstr "Hatdat AI Publisher"
+
+#: includes/class-plugin.php:40
+msgid ""
+"Hatdat AI Publisher can send prompts, article content and image "
+"generation requests entered by administrators to the OpenAI API for "
+"processing."
+msgstr ""
+"Hatdat AI Publisher puede enviar a la API de OpenAI, para su "
+"procesamiento, prompts, contenido de artículos y solicitudes de "
+"generación de imágenes introducidos por administradores."
+
+#: includes/class-admin.php:381
+msgid ""
+"Hatdat AI Publisher created the content. Estimated API cost: %1$s. Text "
+"tokens: %2$d input / %3$d output. Image estimate: %4$s."
+msgstr ""
+"Hatdat AI Publisher creó el contenido. Coste estimado de la API: %1$s. "
+"Tokens de texto: %2$d entrada / %3$d salida. Estimación de imagen: %4$s."
+
+#: admin/views/settings.phtml:328
+msgid ""
+"Hatdat AI Publisher does not automatically transmit WordPress user "
+"accounts, passwords, email addresses, profile data or other WordPress "
+"user records to OpenAI at any time."
+msgstr ""
+"Hatdat AI Publisher no transmite automáticamente en ningún momento a "
+"OpenAI cuentas de usuario de WordPress, contraseñas, direcciones de "
+"correo electrónico, datos de perfil ni otros registros de usuarios de "
+"WordPress."
+
+#: includes/class-plugin.php:41
+msgid ""
+"Hatdat AI Publisher does not automatically transmit WordPress user "
+"accounts, passwords, email addresses, profile data or other WordPress "
+"user records to OpenAI."
+msgstr ""
+"Hatdat AI Publisher no transmite automáticamente a OpenAI cuentas de "
+"usuario de WordPress, contraseñas, direcciones de correo electrónico, "
+"datos de perfil ni otros registros de usuarios de WordPress."
+
+#: includes/class-admin.php:76
+#, python-format
+msgid ""
+"Hatdat AI Publisher requires your confirmation before using the OpenAI "
+"API. Please review and accept the OpenAI data processing and cost notices"
+" in the %s."
+msgstr ""
+"Hatdat AI Publisher requiere tu confirmación antes de usar la API de "
+"OpenAI. Revisa y acepta los avisos sobre el procesamiento de datos de "
+"OpenAI y los costes en %s."
+
+#: includes/class-admin.php:77
+msgid "Hatdat AI Publisher settings"
+msgstr "ajustes de Hatdat AI Publisher"
+
+#: admin/views/settings.phtml:322
+msgid ""
+"Hatdat AI Publisher uses the OpenAI API to generate article text and "
+"images. This requires a separate OpenAI API account and may generate "
+"additional costs billed by OpenAI."
+msgstr ""
+"Hatdat AI Publisher usa la API de OpenAI para generar textos de artículos"
+" e imágenes. Esto requiere una cuenta API de OpenAI independiente y puede"
+" generar costes adicionales facturados por OpenAI."
+
+#: admin/views/generate.phtml:14
+msgid "Hatdat AI Publisher – Generate content"
+msgstr "Hatdat AI Publisher – Generar contenido"
+
+#: admin/views/prompts.phtml:13
+msgid "Hatdat AI Publisher – Prompts"
+msgstr "Hatdat AI Publisher – Prompts"
+
+#: admin/views/settings.phtml:10
+msgid "Hatdat AI Publisher – Settings"
+msgstr "Hatdat AI Publisher – Ajustes"
+
+#: includes/helpers.php:48
+msgid "Hebrew"
+msgstr "Hebreo"
+
+#: includes/helpers.php:41
+msgid "Hindi"
+msgstr "Hindi"
+
+#: admin/views/settings.phtml:367
+msgid ""
+"I confirm that I am responsible for complying with applicable privacy, "
+"copyright and data protection regulations when submitting content to "
+"OpenAI through Hatdat AI Publisher."
+msgstr ""
+"Confirmo que soy responsable de cumplir las normas aplicables de "
+"privacidad, derechos de autor y protección de datos al enviar contenido a"
+" OpenAI mediante Hatdat AI Publisher."
+
+#: admin/views/settings.phtml:347
+msgid ""
+"I understand that prompts, article content and image generation requests "
+"entered into Hatdat AI Publisher are transmitted to OpenAI for "
+"processing."
+msgstr ""
+"Entiendo que los prompts, contenidos de artículos y solicitudes de "
+"generación de imágenes introducidos en Hatdat AI Publisher se transmiten "
+"a OpenAI para su procesamiento."
+
+#: admin/views/settings.phtml:357
+msgid ""
+"I understand that using the OpenAI API requires a separate OpenAI API "
+"account and may generate additional costs billed by OpenAI."
+msgstr ""
+"Entiendo que el uso de la API de OpenAI requiere una cuenta API de OpenAI"
+" independiente y puede generar costes adicionales facturados por OpenAI."
+
+#: admin/views/settings.phtml:114
+msgid "Image generation usually causes the largest share of API costs."
+msgstr ""
+"La generación de imágenes suele representar la mayor parte de los costes "
+"de la API."
+
+#: admin/views/settings.phtml:83
+msgid "Image model"
+msgstr "Modelo de imagen"
+
+#: includes/class-openai-client.php:58
+msgid "Image prompt is missing."
+msgstr "Falta el prompt de imagen."
+
+#: admin/views/settings.phtml:130
+msgid "Image size"
+msgstr "Tamaño de imagen"
+
+#: admin/views/settings.phtml:318
+msgid "Important before using Hatdat AI Publisher:"
+msgstr "Importante antes de usar Hatdat AI Publisher:"
+
+#: includes/helpers.php:49
+msgid "Indonesian"
+msgstr "Indonesio"
+
+#: includes/class-admin.php:312
+msgid "Input is missing."
+msgstr "Faltan datos de entrada."
+
+#: includes/helpers.php:30
+msgid "Italian"
+msgstr "Italiano"
+
+#: includes/helpers.php:39
+msgid "Japanese"
+msgstr "Japonés"
+
+#: includes/helpers.php:40
+msgid "Korean"
+msgstr "Coreano"
+
+#: admin/views/settings.phtml:154
+msgid "Landscape 16:9 – 1792 × 1024"
+msgstr "Horizontal 16:9 – 1792 × 1024"
+
+#: admin/views/settings.phtml:148
+msgid "Landscape 3:2 – 1536 × 1024"
+msgstr "Horizontal 3:2 – 1536 × 1024"
+
+#: admin/views/prompts.phtml:116
+msgid "Language"
+msgstr "Idioma"
+
+#: includes/class-admin.php:233
+msgid ""
+"No active API credit was detected. Text and image generation will fail "
+"until billing or credits are fixed."
+msgstr ""
+"No se detectó crédito API activo. La generación de texto e imágenes "
+"fallará hasta que se corrijan la facturación o los créditos."
+
+#: admin/views/generate.phtml:242 admin/views/settings.phtml:302
+msgid "No default"
+msgstr "Sin valor predeterminado"
+
+#: includes/class-openai-client.php:83
+msgid "No image data received."
+msgstr "No se recibieron datos de imagen."
+
+#: includes/helpers.php:45
+msgid "Norwegian"
+msgstr "Noruego"
+
+#: admin/views/generate.phtml:113
+msgid ""
+"Not available via API. The article generation can still work if the API "
+"key and billing are valid."
+msgstr ""
+"No disponible mediante API. La generación de artículos aún puede "
+"funcionar si la clave API y la facturación son válidas."
+
+#: admin/views/generate.phtml:122
+msgid ""
+"Note: OpenAI credit/balance data could not be retrieved automatically. "
+"Please use the billing check in the settings or verify the balance "
+"directly in the OpenAI dashboard."
+msgstr ""
+"Nota: los datos de crédito/saldo de OpenAI no se pudieron recuperar "
+"automáticamente. Usa la comprobación de facturación en los ajustes o "
+"verifica el saldo directamente en el panel de OpenAI."
+
+#: includes/class-plugin.php:42
+msgid ""
+"Only content intentionally submitted through the Hatdat AI Publisher "
+"administration interface is transmitted to OpenAI. Site administrators "
+"are responsible for ensuring that submitted content complies with "
+"applicable privacy and data protection laws."
+msgstr ""
+"Solo se transmite a OpenAI el contenido enviado intencionadamente a "
+"través de la interfaz de administración de Hatdat AI Publisher. Los "
+"administradores del sitio son responsables de garantizar que el contenido"
+" enviado cumpla las leyes de privacidad y protección de datos aplicables."
+
+#: admin/views/settings.phtml:399
+msgid "OpenAI API billing check"
+msgstr "Comprobación de facturación de la API de OpenAI"
+
+#: includes/class-admin.php:244
+msgid ""
+"OpenAI API check successful. The API key is valid, the configured text "
+"model responded, and no quota error was returned."
+msgstr ""
+"Comprobación de la API de OpenAI correcta. La clave API es válida, el "
+"modelo de texto configurado respondió y no se devolvió ningún error de "
+"cuota."
+
+#: admin/views/settings.phtml:313
+msgid "OpenAI API data processing and costs"
+msgstr "Procesamiento de datos de la API de OpenAI y costes"
+
+#: admin/views/settings.phtml:37
+msgid "OpenAI API Key"
+msgstr "Clave API de OpenAI"
+
+#: includes/class-openai-client.php:16 includes/class-openai-client.php:57
+#: includes/class-openai-client.php:89 includes/class-openai-client.php:136
+msgid "OpenAI API key is missing."
+msgstr "Falta la clave API de OpenAI."
+
+#: admin/views/settings.phtml:56
+msgid "OpenAI API keys"
+msgstr "Claves API de OpenAI"
+
+#: includes/class-openai-client.php:184
+msgid ""
+"OpenAI API quota exceeded. Please check your OpenAI billing status, "
+"available %1$s and %2$s."
+msgstr ""
+"Se superó la cuota de la API de OpenAI. Comprueba tu estado de "
+"facturación de OpenAI, los %1$s disponibles y los %2$s."
+
+#: admin/views/generate.phtml:98 admin/views/settings.phtml:471
+msgid "OpenAI available credit"
+msgstr "Crédito disponible de OpenAI"
+
+#: admin/views/generate.phtml:66 admin/views/settings.phtml:431
+msgid "OpenAI cost estimation"
+msgstr "Estimación de costes de OpenAI"
+
+#: admin/views/generate.phtml:111
+msgid "OpenAI credit information"
+msgstr "Información de crédito de OpenAI"
+
+#: includes/class-openai-client.php:230
+msgid ""
+"OpenAI is currently unavailable or returned a server error. Please try "
+"again later."
+msgstr ""
+"OpenAI no está disponible actualmente o devolvió un error del servidor. "
+"Inténtalo de nuevo más tarde."
+
+#: includes/class-openai-client.php:252
+#, python-format
+msgid "OpenAI message: %s"
+msgstr "Mensaje de OpenAI: %s"
+
+#: includes/class-openai-client.php:212
+#, python-format
+msgid ""
+"OpenAI rate limit exceeded. Please try again later or check your "
+"organization %s."
+msgstr ""
+"Se superó el límite de velocidad de OpenAI. Inténtalo de nuevo más tarde "
+"o comprueba tu organización %s."
+
+#: includes/class-openai-client.php:234
+msgid ""
+"OpenAI rejected the request as invalid. Please check the selected model, "
+"image size and prompt configuration."
+msgstr ""
+"OpenAI rechazó la solicitud por no ser válida. Comprueba el modelo "
+"seleccionado, el tamaño de imagen y la configuración del prompt."
+
+#: includes/class-openai-client.php:225
+msgid ""
+"OpenAI rejected the request because it may violate the content policy. "
+"Please change the prompt or article input."
+msgstr ""
+"OpenAI rechazó la solicitud porque podría infringir la política de "
+"contenido. Cambia el prompt o la entrada del artículo."
+
+#: includes/class-openai-client.php:238
+msgid "OpenAI returned an error."
+msgstr "OpenAI devolvió un error."
+
+#: admin/views/generate.phtml:106 admin/views/settings.phtml:483
+msgid "OpenAI total granted credit"
+msgstr "Crédito total concedido por OpenAI"
+
+#: admin/views/generate.phtml:102 admin/views/settings.phtml:478
+msgid "OpenAI used credit"
+msgstr "Crédito usado de OpenAI"
+
+#: admin/views/generate.phtml:168
+msgid "Output language"
+msgstr "Idioma de salida"
+
+#: admin/views/generate.phtml:224
+msgid "Page"
+msgstr "Página"
+
+#: admin/views/generate.phtml:272 admin/views/settings.phtml:275
+msgid "Pending review"
+msgstr "Pendiente de revisión"
+
+#: includes/class-admin.php:220
+msgid ""
+"Please confirm the OpenAI data processing and cost notices before "
+"checking the API connection."
+msgstr ""
+"Confirma los avisos sobre el procesamiento de datos de OpenAI y los "
+"costes antes de comprobar la conexión API."
+
+#: includes/class-admin.php:304
+msgid ""
+"Please confirm the OpenAI data processing and cost notices in the Hatdat "
+"AI Publisher settings before generating content."
+msgstr ""
+"Confirma los avisos sobre el procesamiento de datos de OpenAI y los "
+"costes en los ajustes de Hatdat AI Publisher antes de generar contenido."
+
+#: includes/helpers.php:33
+msgid "Polish"
+msgstr "Polaco"
+
+#: admin/views/settings.phtml:166
+msgid "Portrait 2:3 – 1024 × 1536"
+msgstr "Vertical 2:3 – 1024 × 1536"
+
+#: includes/helpers.php:32
+msgid "Portuguese"
+msgstr "Portugués"
+
+#: admin/views/generate.phtml:221
+msgid "Post"
+msgstr "Entrada"
+
+#: admin/views/generate.phtml:284 admin/views/settings.phtml:287
+msgid "Private"
+msgstr "Privado"
+
+#: admin/views/generate.phtml:148
+msgid "Prompt"
+msgstr "Prompt"
+
+#: admin/views/prompts.phtml:35
+msgid "Prompt copied. You can edit the copy now."
+msgstr "Prompt copiado. Ahora puedes editar la copia."
+
+#: includes/class-prompt-manager.php:193
+msgid "Prompt could not be copied."
+msgstr "No se pudo copiar el prompt."
+
+#: includes/class-prompt-manager.php:126 includes/class-prompt-manager.php:143
+msgid "Prompt could not be saved."
+msgstr "No se pudo guardar el prompt."
+
+#: admin/views/prompts.phtml:30
+msgid "Prompt deleted."
+msgstr "Prompt eliminado."
+
+#: admin/views/prompts.phtml:41
+msgid "Prompt details"
+msgstr "Detalles del prompt"
+
+#: admin/views/prompts.phtml:72
+#, python-format
+msgid "Prompt language: %s"
+msgstr "Idioma del prompt: %s"
+
+#: includes/class-admin.php:270 includes/class-admin.php:287
+#: includes/class-admin.php:310 includes/class-prompt-manager.php:108
+#: includes/class-prompt-manager.php:152 includes/class-prompt-manager.php:171
+msgid "Prompt not found."
+msgstr "Prompt no encontrado."
+
+#: admin/views/prompts.phtml:25
+msgid "Prompt saved."
+msgstr "Prompt guardado."
+
+#: includes/class-prompt-manager.php:102
+msgid "Prompt title and content are required."
+msgstr "El título y el contenido del prompt son obligatorios."
+
+#: includes/class-admin.php:164
+msgid "Prompts"
+msgstr "Prompts"
+
+#: admin/views/settings.phtml:325
+msgid ""
+"Prompts, article content and image generation requests entered by "
+"administrators are transmitted to OpenAI for processing."
+msgstr ""
+"Los prompts, contenidos de artículos y solicitudes de generación de "
+"imágenes introducidos por administradores se transmiten a OpenAI para su "
+"procesamiento."
+
+#: admin/views/generate.phtml:278 admin/views/settings.phtml:281
+msgid "Publish"
+msgstr "Publicar"
+
+#: admin/views/generate.phtml:316 admin/views/settings.phtml:243
+msgid "Rank Math"
+msgstr "Rank Math"
+
+#: admin/views/prompts.phtml:140
+msgid "Really delete this prompt?"
+msgstr "¿Eliminar realmente este prompt?"
+
+#: includes/class-openai-client.php:18
+msgid "Reply only as valid JSON without Markdown. Structure:"
+msgstr "Responde solo con JSON válido, sin Markdown. Estructura:"
+
+#: admin/views/settings.phtml:337
+msgid "Required confirmations"
+msgstr "Confirmaciones obligatorias"
+
+#: includes/helpers.php:35
+msgid "Russian"
+msgstr "Ruso"
+
+#: admin/views/prompts.phtml:92
+msgid "Save prompt"
+msgstr "Guardar prompt"
+
+#: admin/views/settings.phtml:382
+msgid "Save settings"
+msgstr "Guardar ajustes"
+
+#: admin/views/generate.phtml:292
+msgid "SEO plugin"
+msgstr "Plugin SEO"
+
+#: includes/class-admin.php:165
+msgid "Settings"
+msgstr "Ajustes"
+
+#: admin/views/settings.phtml:15
+msgid "Settings saved."
+msgstr "Ajustes guardados."
+
+#: includes/helpers.php:76
+#, python-format
+msgid "Site language: %s"
+msgstr "Idioma del sitio: %s"
+
+#: includes/helpers.php:29
+msgid "Spanish"
+msgstr "Español"
+
+#: admin/views/settings.phtml:142
+msgid "Square – 1024 × 1024"
+msgstr "Cuadrado – 1024 × 1024"
+
+#: admin/views/prompts.phtml:126
+msgid "Standard prompt"
+msgstr "Prompt estándar"
+
+#: admin/views/generate.phtml:254
+msgid "Status"
+msgstr "Estado"
+
+#: includes/helpers.php:42
+msgid "Swedish"
+msgstr "Sueco"
+
+#: admin/views/prompts.phtml:80
+msgid "System prompt"
+msgstr "Prompt del sistema"
+
+#: admin/views/settings.phtml:64
+msgid "Text model"
+msgstr "Modelo de texto"
+
+#: includes/helpers.php:51
+msgid "Thai"
+msgstr "Tailandés"
+
+#: includes/class-json-parser.php:27
+msgid "The AI response is missing title or content."
+msgstr "A la respuesta de la IA le falta el título o el contenido."
+
+#: includes/class-json-parser.php:11
+msgid "The AI response was not valid JSON."
+msgstr "La respuesta de la IA no era JSON válido."
+
+#: admin/views/generate.phtml:68 admin/views/settings.phtml:434
+msgid ""
+"The cost estimation is an approximation based on the configured Hatdat AI"
+" Publisher pricing values and the currently selected models/image size."
+msgstr ""
+"La estimación de costes es una aproximación basada en los valores de "
+"precios configurados en Hatdat AI Publisher y en los modelos/tamaño de "
+"imagen seleccionados actualmente."
+
+#: admin/views/generate.phtml:186
+msgid ""
+"The generated post or page will be written in this language. The default "
+"is the site language, independently of the admin language and prompt "
+"language."
+msgstr ""
+"La entrada o página generada se escribirá en este idioma. El valor "
+"predeterminado es el idioma del sitio, independientemente del idioma del "
+"administrador y del prompt."
+
+#: includes/class-openai-client.php:197
+#, python-format
+msgid ""
+"The OpenAI API key is invalid or was rejected. Please check the API key "
+"in the Hatdat AI Publisher settings or create a new key under %s."
+msgstr ""
+"La clave API de OpenAI no es válida o fue rechazada. Comprueba la clave "
+"API en los ajustes de Hatdat AI Publisher o crea una nueva en %s."
+
+#: includes/class-openai-client.php:221
+msgid ""
+"The request is too long for the selected text model. Please shorten the "
+"input or use a model with a larger context window."
+msgstr ""
+"La solicitud es demasiado larga para el modelo de texto seleccionado. "
+"Acorta la entrada o usa un modelo con una ventana de contexto mayor."
+
+#: includes/class-openai-client.php:206
+msgid ""
+"The selected OpenAI model is not available for this API key or does not "
+"exist. Please check the configured text and image models."
+msgstr ""
+"El modelo de OpenAI seleccionado no está disponible para esta clave API o"
+" no existe. Comprueba los modelos de texto e imagen configurados."
+
+#: includes/class-prompt-manager.php:155
+msgid "The standard prompt cannot be deleted."
+msgstr "El prompt estándar no se puede eliminar."
+
+#: includes/class-prompt-manager.php:111
+msgid ""
+"The standard prompt cannot be edited. Please create a copy and edit the "
+"copy instead."
+msgstr "El prompt estándar no se puede editar. Crea una copia y edita la copia."
+
+#: admin/views/prompts.phtml:46
+msgid ""
+"This is a protected standard prompt. It cannot be edited or deleted. "
+"Create a copy if you want to customize it."
+msgstr ""
+"Este es un prompt estándar protegido. No se puede editar ni eliminar. "
+"Crea una copia si quieres personalizarlo."
+
+#: admin/views/settings.phtml:402
+msgid ""
+"This sends a tiny test request to OpenAI. It checks whether the API key "
+"works, the selected text model is available and OpenAI does not report a "
+"quota or billing error."
+msgstr ""
+"Esto envía una pequeña solicitud de prueba a OpenAI. Comprueba si la "
+"clave API funciona, si el modelo de texto seleccionado está disponible y "
+"si OpenAI no informa de un error de cuota o facturación."
+
+#: admin/views/prompts.phtml:56 admin/views/prompts.phtml:114
+msgid "Title"
+msgstr "Título"
+
+#: includes/helpers.php:34
+msgid "Turkish"
+msgstr "Turco"
+
+#: admin/views/prompts.phtml:115
 msgid "Type"
 msgstr "Tipo"
 
-msgid "Language"
-msgstr "Idioma"
+#: includes/helpers.php:36
+msgid "Ukrainian"
+msgstr "Ucraniano"
+
+#: admin/views/prompts.phtml:92
+msgid "Update prompt"
+msgstr "Actualizar prompt"
+
+#: admin/views/generate.phtml:193
+msgid "URL or topic"
+msgstr "URL o tema"
+
+#: includes/class-admin.php:125
+msgid "usage limits"
+msgstr "límites de uso"
+
+#: admin/views/settings.phtml:191
+msgid ""
+"USD per 1 million input tokens. Used only for the local cost estimate. "
+"Please compare this value with the current OpenAI pricing page."
+msgstr ""
+"USD por 1 millón de tokens de entrada. Se usa solo para la estimación "
+"local de costes. Compara este valor con la página actual de precios de "
+"OpenAI."
+
+#: admin/views/settings.phtml:212
+msgid ""
+"USD per 1 million output tokens. Used only for the local cost estimate. "
+"Image prices are estimated from the selected image size."
+msgstr ""
+"USD por 1 millón de tokens de salida. Se usa solo para la estimación "
+"local de costes. Los precios de imagen se estiman a partir del tamaño de "
+"imagen seleccionado."
+
+#: includes/helpers.php:81
+#, python-format
+msgid "User language: %s"
+msgstr "Idioma del usuario: %s"
+
+#: includes/class-plugin.php:43
+msgid ""
+"Using the OpenAI API requires a separate OpenAI API account and may "
+"generate additional costs billed by OpenAI."
+msgstr ""
+"El uso de la API de OpenAI requiere una cuenta API de OpenAI "
+"independiente y puede generar costes adicionales facturados por OpenAI."
+
+#: includes/helpers.php:50
+msgid "Vietnamese"
+msgstr "Vietnamita"
+
+#: admin/views/prompts.phtml:131
+msgid "View"
+msgstr "Ver"
+
+#: admin/views/generate.phtml:133 includes/class-admin.php:45
+msgid "Waiting for GPT response…"
+msgstr "Esperando la respuesta de GPT…"
+
+#: admin/views/generate.phtml:322 admin/views/settings.phtml:249
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: includes/class-admin.php:204
+msgid "You do not have permission to access this Hatdat AI Publisher page."
+msgstr "No tienes permiso para acceder a esta página de Hatdat AI Publisher."
+
+#: includes/class-admin.php:417
+msgid "You do not have permission to perform this action."
+msgstr "No tienes permiso para realizar esta acción."
+
